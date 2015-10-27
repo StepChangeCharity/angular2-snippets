@@ -7,10 +7,7 @@ import { Component, View, NgIf, Injector } from 'angular2/angular2';
 @View({
 	template: `
 		<ol>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
+			<li><a href="#/01-input-and-output">Inputs &amp; Outputs</a></li>
 		</ol>
 	`,
 	directives: []

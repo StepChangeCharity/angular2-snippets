@@ -1,4 +1,7 @@
-import { Component, View, NgIf, Injector } from 'angular2/angular2';
+import { 
+	Component, View, NgIf, Injector, 
+	EventEmitter, Input, Output 
+} from 'angular2/angular2';
 
 @Component({
 	selector: "--component--"
@@ -6,15 +9,33 @@ import { Component, View, NgIf, Injector } from 'angular2/angular2';
 
 @View({
 	template: `
-		<p>Your markup</p>
+		<h2>[Snippet Title]</h2>
+		<p>
+			[Description]
+		</p>
+		
+		<h3>Issues</h3>
+		<p>
+			[Any issues you've had, which may need further investigation]
+		</p>
+		
+		<h3>Snippet</h3>
+		<hr/>
+		
+		<p>your control snippet</p>
+		
+		
 	`,
 	directives: []
 })
 
 export class SomeComponent {
+	// @Input() someInput: boolean = false;
+	// @Output() someOutput: EventEmitter = new EventEmitter();
 	
-	constructor() {
-		
+	constructor() {	
+		// To trigger the @Output emitter, use:
+		// this.someOutput.next({ some: data });	
 	}
 	
 }
