@@ -1,0 +1,114 @@
+// Available variables which can be used inside of strings.
+// ${workspaceRoot}: the root folder of the team
+// ${file}: the current opened file
+// ${fileBasename}: the current opened file's basename
+// ${fileDirname}: the current opened file's dirname
+// ${fileExtname}: the current opened file's extension
+// ${cwd}: the current working directory of the spawned process
+
+{
+  "version": "0.1.0",
+  "command": "npm",
+  "windows": {
+    "command": "npm.cmd"
+  },
+  "tasks": [
+    {
+      // Build task, Ctrl+Shift+B
+      // "npm install --loglevel info"
+      "taskName": "build",
+      "isBuildCommand": true,
+      "args": ["run", "--loglevel", "info"]
+    },
+    {
+      // "npm run setup"
+      "taskName": "setup",
+	  "args": ["run", "--loglevel", "info"]
+    },	
+    {
+      // "npm run development"
+      "taskName": "development",
+	  "args": ["run", "--loglevel", "info"]
+    },
+    {
+      // "npm run production"
+      "taskName": "production",
+	  "args": ["run", "--loglevel", "info"]
+    }	
+  ]
+}
+
+
+// A task runner that calls the Typescript compiler (tsc) and
+// compiles based on a tsconfig.json file that is present in
+// the root of the folder open in VSCode
+/*
+{
+	"version": "0.1.0",
+
+	// The command is tsc. Assumes that tsc has been installed using npm install -g typescript
+	"command": "tsc",
+
+	// The command is a shell script
+	"isShellCommand": true,
+
+	// Show the output window only if unrecognized errors occur.
+	"showOutput": "silent",
+
+	// Tell the tsc compiler to use the tsconfig.json from the open folder.
+	"args": ["-p", "."],
+
+	// use the standard tsc problem matcher to find compile problems
+	// in the output.
+	"problemMatcher": "$tsc"
+}
+*/
+
+// A task runner configuration for gulp. Gulp provides a less task
+// which compiles less to css.
+/*
+{
+	"version": "0.1.0",
+	"command": "gulp",
+	"isShellCommand": true,
+	"tasks": [
+		{
+			"taskName": "less",
+			// Make this the default build command.
+			"isBuildCommand": true,
+			// Show the output window only if unrecognized errors occur.
+			"showOutput": "silent",
+			// Use the standard less compilation problem matcher.
+			"problemMatcher": "$lessCompile"
+		}
+	]
+}
+*/
+
+// Uncomment the following section to use msbuild which compiles Typescript
+// and less files.
+/*
+{
+	"version": "0.1.0",
+	"command": "msbuild",
+	"args": [
+		// Ask msbuild to generate full paths for file names.
+		"/property:GenerateFullPaths=true"
+	],
+	"taskSelector": "/t:",
+	"showOutput": "silent",
+	"tasks": [
+		{
+			"taskName": "build",
+			// Show the output window only if unrecognized errors occur.
+			"showOutput": "silent",
+			// Use the standard MS compiler pattern to detect errors, warnings
+			// and infos in the output.
+			"problemMatcher": [
+				"$msCompile",
+				"$lessCompile"
+			]
+		}
+	]
+}
+*/
