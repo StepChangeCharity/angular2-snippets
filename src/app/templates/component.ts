@@ -19,6 +19,11 @@ import {
 			[Any issues you've had, which may need further investigation]
 		</p>
 		
+		<h3>Resources</h3>
+		<p>
+			Any resources you found useful when developing this snippet (e.g. plunks, articles, etc)
+		</p>
+		
 		<h3>Snippet</h3>
 		<hr/>
 		
@@ -39,3 +44,4 @@ export class SomeComponent {
 	}
 	
 }
+

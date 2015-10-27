@@ -12,4 +12,4 @@ bootstrap(MyAppComponent, [
     bind(ROUTER_PRIMARY_COMPONENT).toValue(MyAppComponent),
     HTTP_BINDINGS,
     bind(LocationStrategy).toClass(HashLocationStrategy)
-]);
+]).catch(err => console.error(err));
