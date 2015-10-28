@@ -1,3 +1,15 @@
 // Place your settings in this file to overwrite default and user settings.
 {
+	"files.exclude": {
+		"**/.git": true,
+		"**/.DS_Store": true,
+		"**/jspm_packages": true,
+		"**/node_modules": true,
+		"**/typings": true,
+		"**/.vscode": true,
+		".gitattributes": true,
+		"package.json": true,
+		"tsconfig.json": true,
+		"tsd.json": true
+	},
 }
