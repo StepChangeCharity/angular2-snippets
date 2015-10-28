@@ -5,11 +5,11 @@ import 'es6-shim';
 import { bootstrap, bind } from 'angular2/angular2';
 import { ROUTER_BINDINGS, ROUTER_PRIMARY_COMPONENT, LocationStrategy, HashLocationStrategy } from 'angular2/router';
 import { HTTP_BINDINGS } from 'angular2/http';
-import { MyAppComponent } from 'app/proto';
+import { AppComponent } from 'app/app';
 
-bootstrap(MyAppComponent, [
+bootstrap(AppComponent, [
     ROUTER_BINDINGS,
-    bind(ROUTER_PRIMARY_COMPONENT).toValue(MyAppComponent),
+    bind(ROUTER_PRIMARY_COMPONENT).toValue(AppComponent),
     HTTP_BINDINGS,
     bind(LocationStrategy).toClass(HashLocationStrategy)
 ]).catch(err => console.error(err));

@@ -6,7 +6,7 @@ import { FormsSnippet } from 'app/snippets/02-forms/forms-snippet';
 import { PipesSnippet } from 'app/snippets/03-pipes/pipes-snippet';
 
 @Component({
-    selector: 'proto'
+    selector: 'app'
 })
 
 @View({
@@ -25,7 +25,7 @@ import { PipesSnippet } from 'app/snippets/03-pipes/pipes-snippet';
 	{ path: '/03-pipes', component: PipesSnippet, as: "PipesSnippet"}
 ])
 
-export class MyAppComponent {
+export class AppComponent {
 
   constructor() {
 		
