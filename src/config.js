@@ -23,6 +23,7 @@ System.config({
     "angular2": "npm:angular2@2.0.0-alpha.39",
     "es6-shim": "github:es-shims/es6-shim@0.33.6",
     "reflect-metadata": "npm:reflect-metadata@0.1.2",
+    "rx": "npm:rx@4.0.6",
     "typescript": "npm:typescript@1.6.2",
     "zone.js": "npm:zone.js@0.5.8",
     "github:jspm/nodelibs-assert@0.1.0": {
@@ -278,6 +279,10 @@ System.config({
     },
     "npm:rx@2.5.1": {
       "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:rx@4.0.6": {
+      "process": "github:jspm/nodelibs-process@0.1.2",
+      "util": "github:jspm/nodelibs-util@0.1.0"
     },
     "npm:sha.js@2.4.4": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
