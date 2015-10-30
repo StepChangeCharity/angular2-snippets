@@ -1,23 +1,32 @@
 import { 
 	Component, View, NgIf, Injector, 
-	EventEmitter, Input, Output 
+	EventEmitter, Input, Output
 } from 'angular2/angular2';
 
+import { TopComponent } from './top-component';
+
+
+// ************ ComponentHierarchyCommsSnippet **************
+
 @Component({
-	selector: "component-hierarchy-comms"
+	selector: "component-hierarchy-comms",
 })
 
 @View({
 	template: `
-		<h2>[Snippet Title]</h2>
+		<h2>Component Hierarchy Communications Snippet</h2>
 		<p>
-			[Description]
+			The purpose of this snippet is to illustrate how communication between
+			a root and n-level children can/should/does work.
 		</p>
 		
+		
 		<h3>Issues</h3>
-		<p>
-			[Any issues you've had, which may need further investigation]
-		</p>
+		<ol>
+			<li>Classes have to be declared <strong>before</strong> their usage 
+			(<small>so children are declare above the parent - which makes sense, but may catch you out</small>)
+			</li>
+		</ol>
 		
 		<h3>Resources</h3>
 		<p>
@@ -27,20 +36,14 @@ import {
 		<h3>Snippet</h3>
 		<hr/>
 		
-		<p>your control snippet</p>
-		
-		
+		<top></top>
 	`,
-	directives: []
+	directives: [TopComponent]
 })
 
 export class ComponentHierarchyCommsSnippet {
-	// @Input() someInput: boolean = false;
-	// @Output() someOutput: EventEmitter = new EventEmitter();
 	
 	constructor() {	
-		// To trigger the @Output emitter, use:
-		// this.someOutput.next({ some: data });	
 	}
 	
 }
