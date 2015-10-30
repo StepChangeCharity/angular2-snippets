@@ -34,13 +34,12 @@ export class BottomComponent {
 		var monthlyVersion = this.asMonths();
 		var decadeVersion = this.asDecades();
 		
-//		console.log("bottom", monthlyVersion);
 		this.update.next(decadeVersion);		
 		this.monthlyOutput.next(monthlyVersion);
 	}
 	
 	asMonths() {
-		let monthly = (this.bottomAge / 12);
+		let monthly = (this.bottomAge * 12);
 		
 		return monthly;
 	}

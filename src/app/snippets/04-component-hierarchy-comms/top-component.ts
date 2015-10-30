@@ -18,10 +18,11 @@ import { MiddleComponent } from './middle-component';
 			<label>Your age: <input type="number" #newage (blur)="onBlur(newage)" /> (years) 
 				
 			<middle  
-				(propagator)="onMonthly($event)"
+				(propagator)="onEventPropagation($event)"
 				[middle-age]="topAge">
 			</middle>
-			<p>Your age <strong>{{ageInMonths}}</strong> (months)</p>
+			<p>Your age <strong>{{ageInMonths}}</strong> (in months)</p>
+			<p>Your age <strong>{{ageInDecades}}</strong> (in decades)</p>
 		</div>	
 	`,
 	directives: [MiddleComponent]
@@ -30,14 +31,19 @@ import { MiddleComponent } from './middle-component';
 export class TopComponent {
 	topAge: integer = 0;
 	ageInMonths: integer = 0;
+	ageInDecades: integer = 0;
 	
 	onBlur(newage) {
 		this.topAge = newage.value;
 	}
 	
-	onMonthly(monthly) {
-		//console.log("top", monthly);
-		this.ageInMonths = monthly;
+	onEventPropagation(data) {
+		switch (data.type) {
+			case "months": this.ageInMonths = data.amount; break;
+			case "decades": this.ageInDecades = data.amount; break;
+			default: throw new Error(`data type ${data.type} is not recognised.`);
+		}
+		
 	}
 	
 	

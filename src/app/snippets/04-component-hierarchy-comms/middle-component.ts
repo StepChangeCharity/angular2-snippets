@@ -33,12 +33,11 @@ export class MiddleComponent {
 	}
 	
 	onMonthly(monthly) {
-		//console.log("middle::months(output)", monthly);
-		this.propagator.next(monthly);
+		this.propagator.next( {type: "months", amount: monthly });
 	}
 	
 	onDecade(decades) {
-		console.log("middle::decades(event)", decades );
+		this.propagator.next( {type: "decades", amount: decades} );
 	}
 	
 }
