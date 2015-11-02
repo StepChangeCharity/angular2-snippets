@@ -5,6 +5,7 @@ import { InputsAndOutputs } from 'app/snippets/01-input-and-output/inputs-and-ou
 import { FormsSnippet } from 'app/snippets/02-forms/forms-snippet';
 import { PipesSnippet } from 'app/snippets/03-pipes/pipes-snippet';
 import { ComponentHierarchyCommsSnippet } from 'app/snippets/04-component-hierarchy-comms/component-hierarchy-comms';
+import { ToDoApp } from 'app/snippets/05-todo/todo-app';
 
 @Component({
     selector: 'app'
@@ -25,6 +26,7 @@ import { ComponentHierarchyCommsSnippet } from 'app/snippets/04-component-hierar
 	{ path: '/02-forms', component: FormsSnippet, as: "FormsSnippet"},
 	{ path: '/03-pipes', component: PipesSnippet, as: "PipesSnippet"},
 	{ path: '/04-component-hierarchy-comms', component: ComponentHierarchyCommsSnippet, as: "PipesSnippet"},
+	{ path: '/05-todo-app', component: ToDoApp, as: "ToDoApp"},
 ])
 
 export class AppComponent {
