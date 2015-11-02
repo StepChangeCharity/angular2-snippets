@@ -30,11 +30,11 @@ export class ToDoApp {
 			new TaskItem("Eat mice with sugar"),
 		];		
 		
-		console.table(this.masterList);
+		//console.table(this.masterList);
 	}
 	
 	doCommand(cmd) {
-		if (cmd.Type === CommandTypes.EDIT_TASK) {
+		if (cmd.Type === CommandTypes.TASK_EDIT) {
 			console.log("BOOM!");
 			// TODO: add a edit/add line
 			// transfer the task over when editing (perhaps disable the row too), put it in a red background or something

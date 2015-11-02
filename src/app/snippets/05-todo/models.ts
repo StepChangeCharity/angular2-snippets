@@ -1,11 +1,15 @@
 /// <reference path="../../../typings/tsd.d.ts" />
 
+export class EditMode {
+	static READ_ONLY: string = "READ_ONLY";
+	static READ_WRITE: string = "READ_WRITE";
+}
 
 
 export class TaskItem {
 	static _currId: integer = 0;
 	
-	taskId: integer = 0;
+	taskId: integer = 1;
 	task: string = "";
 	createdOn: Date = new Date();
 	modifiedOn: Date = new Date();
@@ -14,19 +18,22 @@ export class TaskItem {
 	constructor(taskDescription: string, completed: boolean = false) {
 		this.task = taskDescription;
 		this.isDone = completed;
-		this.taskId = this._currId++;
+		this.taskId = TaskItem._currId++;
 	}
 }
 
 
 export class CommandTypes {
-	static EDIT_TASK: string = "EDIT_TASK";
+	static TASK_EDIT: string = "TASK_EDIT";
+	static TASK_SAVE: string = "TASK_SAVE";
+	static TASK_DELETE: string = "TASK_DELETE";
+	static TASK_ARCHIVE: string = "TASK_ARCHIVE";
 	
 	
 }
 
 export class Command {
-	Type: string = "";		// e.g. "EDIT_TASK"
+	Type: string = "";		// e.g. "TASK_EDIT"
 	Data: object = null;
 	
 	constructor(type: string, data: object) {

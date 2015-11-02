@@ -1,6 +1,6 @@
 import { Component, View, Input, Output, EventEmitter, NgFor } from "angular2/angular2";
 import { TaskItem } from "./models";
-import { TaskComponent } from "./task-component";
+import { TaskComponent } from "./components/task-component";
 
 @Component({
 	selector: "task-list"	
@@ -17,7 +17,7 @@ import { TaskComponent } from "./task-component";
 		<h5>Your task list</h5>
 		<ul class="task-list">
 			<li *ng-for="#t of tasks">
-				<task-line [task]="t" (commander)="doCommand($event)"></task-line>
+				<task [task]="t" (commander)="doCommand($event)"></task>
 			</li>
 		</ul>
 	`,
@@ -30,6 +30,7 @@ export class TaskListComponent {
 	
 	constructor() {
 		this.commander = new EventEmitter();
+		console.table(this.tasks);
 	}
 	
 	doCommand(cmd) {
