@@ -12,6 +12,7 @@ import { Component, View, NgIf, Injector } from 'angular2/angular2';
 			<li><a href="#/03-pipes">Pipes</a></li>
 			<li><a href="#/04-component-hierarchy-comms">Component Orchestration</a></li>
 			<li><a href="#/05-todo-app">ToDo Application</a></li>
+			<li><a href="#/06-dynamic-styling">Dynamic styling demo</a></li>
 		</ol>
 	`,
 	directives: []

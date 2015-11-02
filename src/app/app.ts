@@ -6,6 +6,7 @@ import { FormsSnippet } from 'app/snippets/02-forms/forms-snippet';
 import { PipesSnippet } from 'app/snippets/03-pipes/pipes-snippet';
 import { ComponentHierarchyCommsSnippet } from 'app/snippets/04-component-hierarchy-comms/component-hierarchy-comms';
 import { ToDoApp } from 'app/snippets/05-todo/todo-app';
+import { DynamicStylingSnippet } from 'app/snippets/06-dynamic-styling/dynamic-styling';
 
 @Component({
     selector: 'app'
@@ -27,6 +28,7 @@ import { ToDoApp } from 'app/snippets/05-todo/todo-app';
 	{ path: '/03-pipes', component: PipesSnippet, as: "PipesSnippet"},
 	{ path: '/04-component-hierarchy-comms', component: ComponentHierarchyCommsSnippet, as: "PipesSnippet"},
 	{ path: '/05-todo-app', component: ToDoApp, as: "ToDoApp"},
+	{ path: '/06-dynamic-styling', component: DynamicStylingSnippet, as: "DynamicStylingSnippet"},
 ])
 
 export class AppComponent {
