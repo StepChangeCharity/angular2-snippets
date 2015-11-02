@@ -5,26 +5,11 @@ import { UserSearch } from './user-search';
 
 export class UserModel{
 
-    public static ACTIVE: string = "active";
-    public static DELETED: string = "deleted";
-
-    status: string = UserModel.ACTIVE;
-
     constructor(
         public id: number = null,
         public name: string = "",
         public address: string = ""
     ){}
-
-    setStatusDeleted():void {
-        this.status = UserModel.DELETED;
-        console.log(this.name + ", " + this.address + " : status changed to " + this.status)
-    }
-
-    setStatusActive():void {
-        this.status = UserModel.ACTIVE;
-        console.log(this.name + ", " + this.address + " : status changd to " + this.status)
-    }
 }
 
 @Component({
