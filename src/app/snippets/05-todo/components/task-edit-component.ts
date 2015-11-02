@@ -43,55 +43,18 @@ export class TaskEditComponent {
 	@Input() task: TaskItem = null;
 	@Output() commander: EventEmitter = null;
 
-	currMode: string = EditMode.READ_ONLY;
-
 	constructor() {
 		this.commander = new EventEmitter();
-	}
-
-	isReading() {
-		return (this.currMode === EditMode.READ_ONLY);
-	}
-	isEditing() {
-		return (this.currMode === EditMode.READ_WRITE);
 	}
 
 	toggleDone() {
 		this.task.isDone = !this.task.isDone;
 	}
 
-
-
-		
-	startEditing() {
-		this.currMode = EditMode.READ_WRITE;
-	}
-	
-	finishEditing() {
-		this.currMode = EditMode.READ_ONLY;
-	}
-	
-	editTask() {
-		this.startEditing();
-		
-		Command c = new Command(CommandTypes.TASK_EDIT, this.task);
+	saveTask() {
+		Command c = new Command(CommandTypes.TASK_SAVE, this.task);
 		
 		this.commander.next(c);
-	}
-	
-	saveTask() {
-		this.finishEditing();
-	}
-	
-	canEdit() {
-		let canBeEdited = true;
-		
-		if (this.task.isDone) {
-			// can only edit incomplete tasks
-			canBeEdited = false;
-		}
-		
-		return canBeEdited;
 	}
 	
 }

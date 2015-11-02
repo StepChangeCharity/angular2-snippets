@@ -28,7 +28,7 @@ export class CommandTypes {
 	static TASK_SAVE: string = "TASK_SAVE";
 	static TASK_DELETE: string = "TASK_DELETE";
 	static TASK_ARCHIVE: string = "TASK_ARCHIVE";
-	
+	static TASK_COMPLETE_TOGGLE: string = "TASK_COMPLETE_TOGGLE";	
 	
 }
 
