@@ -7,6 +7,7 @@ import { PipesSnippet } from 'app/snippets/03-pipes/pipes-snippet';
 import { ComponentHierarchyCommsSnippet } from 'app/snippets/04-component-hierarchy-comms/component-hierarchy-comms';
 import { ToDoApp } from 'app/snippets/05-todo/todo-app';
 import { DynamicStylingSnippet } from 'app/snippets/06-dynamic-styling/dynamic-styling';
+import { SimpleSearchPipe } from 'app/snippets/07-simple-search-pipe/search-pipe';
 
 @Component({
     selector: 'app'
@@ -29,6 +30,7 @@ import { DynamicStylingSnippet } from 'app/snippets/06-dynamic-styling/dynamic-s
 	{ path: '/04-component-hierarchy-comms', component: ComponentHierarchyCommsSnippet, as: "PipesSnippet"},
 	{ path: '/05-todo-app', component: ToDoApp, as: "ToDoApp"},
 	{ path: '/06-dynamic-styling', component: DynamicStylingSnippet, as: "DynamicStylingSnippet"},
+	{ path: '/07-simple-search-pipe', component: SimpleSearchPipe, as: "SimpleSearchPipe"}
 ])
 
 export class AppComponent {

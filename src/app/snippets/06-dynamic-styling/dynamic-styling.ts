@@ -73,7 +73,7 @@ export class DynamicStylingSnippet {
 
     users:UserModel[] = [
         new UserModel(1, 'Fred Flintstone', '301 Cobblestone Way, Bedrock 70777'),
-        new UserModel(2, 'Barney Rubble', '301 Cobblestone Way, Bedrock 70777')
+        new UserModel(2, 'Barney Rubble', '302 Cobblestone Way, Bedrock 70777')
     ];
 
 }
