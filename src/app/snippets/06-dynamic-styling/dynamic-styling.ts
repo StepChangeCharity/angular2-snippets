@@ -20,14 +20,12 @@ export class UserModel{
     // On calling the below two methods, the user's 'status' property will be set to that of the above string constants.
     setStatusDeleted():void {
         this.status = UserModel.DELETED;
-        console.log(this.name + " " + this.status);
-        console.log(this.address + " " + this.status)
+        console.log(this.name + ", " + this.address + " : status changed to " + this.status)
     }
 
     setStatusActive():void {
         this.status = UserModel.ACTIVE;
-        console.log(this.name + " " + this.status);
-        console.log(this.address + " " + this.status)
+        console.log(this.name + ", " + this.address + " : status changd to " + this.status)
     }
 }
 
@@ -42,19 +40,19 @@ export class UserModel{
 			Demonstrates how to modify styling based on model properties.
 
 			The 'Active'/'Deactivate' buttons on each user panel set the 'status' property on each user to 'active' and
-			'deleted' respectively.
+			'deleted' respectively.<br>
 			The status property defines which style is used for the panel using the [ng-class] directive, which changes
-			dynamically.
+			dynamically.<br>
 			The 'Activate' and 'Deactivate' buttons are rendered when the status is 'deleted' and 'active' respectively
-			making use of the [Ng-If] directive.
+			making use of the [Ng-If] directive.<br>
+			Changes to the user properties done via the interface are logged in the console.
 		</p>
 
 		<h3>Issues</h3>
 		<p>
 			Rather than specifying the string literal of the user's 'status' property when defining styles on the
 			'user-renderer' component, we should be able to use the notation '.&dollar;{UserModel.ACTIVE}' to reference
-			the static string property directly.
-
+			the static string property directly.<br>
 			I can't seem to get this working properly in this project - see the angular-login-filtering-demo on GitHub
 			to see it working as intended.
 		</p>
@@ -75,7 +73,7 @@ export class DynamicStylingSnippet {
 
     users:UserModel[] = [
         new UserModel(1, 'Fred Flintstone', '301 Cobblestone Way, Bedrock 70777'),
-        new UserModel(1, 'Barney Rubble', '301 Cobblestone Way, Bedrock 70777')
+        new UserModel(2, 'Barney Rubble', '301 Cobblestone Way, Bedrock 70777')
     ];
 
 }
