@@ -34,8 +34,6 @@ import { TaskItem, Command, CommandTypes, EditMode } from "../models";
 	directives: [NgClass, NgIf, FORM_DIRECTIVES]
 })
 
-
-
 export class TaskEditComponent extends BaseTaskComponent {
 
 	constructor() {

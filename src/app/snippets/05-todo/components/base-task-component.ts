@@ -2,6 +2,7 @@ import { Component, View, EventEmitter, Input, Output, NgClass, NgIf, FORM_DIREC
 import { TaskItem, Command, CommandTypes, EditMode } from "../models";
 
 export class BaseTaskComponent {
+	
 	// "task" will be initialised via AngularJS DI
 	task: TaskItem;
 
