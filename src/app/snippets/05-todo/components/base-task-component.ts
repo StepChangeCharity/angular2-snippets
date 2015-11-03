@@ -1,25 +1,31 @@
 import { Component, View, EventEmitter, Input, Output, NgClass, NgIf, FORM_DIRECTIVES } from "angular2/angular2";
+import { TaskItem, Command, CommandTypes, EditMode } from "../models";
 
 export class BaseTaskComponent {
-	@Input() task: TaskItem = null;
-	@Output() commander: EventEmitter = null;
-
-	currMode: string = EditMode.READ_ONLY;
-
-	constructor() {
-		this.commander = new EventEmitter();
+	
+	/// <summary>
+	/// Sends a command to the parent/owning component about
+	/// "something" that happened (e.g. task was saved).
+	/// </summary>
+	emitCommand(cmdType: string) {
+		Command c = new Command(cmdType, this.task);
+		
+		this.commander.next(c);
 	}
-
-	isReading() {
-		return (this.currMode === EditMode.READ_ONLY);
-	}
-	isEditing() {
-		return (this.currMode === EditMode.READ_WRITE);
-	}
-
-	toggleDone() {
-		this.task.isDone = !this.task.isDone;
-	}
-
+	
+	/// <summary>
+	/// Common styles used by inherited components
+	/// </summary>
+	static baseStyles: string = `
+		.task-list-line {
+			list-style: none;				
+		}
+		.task-list-line li {
+			float: left;
+		}
+		.task-list-line li.completed .task-label {
+			text-decoration: line-through;
+		}
+	`;
 	
 }

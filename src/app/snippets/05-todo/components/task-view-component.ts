@@ -9,15 +9,8 @@ import { TaskItem, Command, CommandTypes, EditMode } from "../models";
 @View({
 	template: `
 		<style>
-			.task-list-line {
-				list-style: none;				
-			}
-			.task-list-line li {
-				float: left;
-			}
-			.task-list-line li.completed .task-label {
-				text-decoration: line-through;
-			}
+			${BaseTaskComponent.baseStyles}
+
 			.task-list-line .col1 { width: 3em; }
 			.task-list-line .col2 .task-label { width: 10em; }
 			.task-list-line .col2 .task-done { width: 2em; }			
@@ -41,7 +34,7 @@ import { TaskItem, Command, CommandTypes, EditMode } from "../models";
 
 
 
-export class TaskViewComponent {
+export class TaskViewComponent extends BaseTaskComponent {
 	@Input() task: TaskItem = null;
 	@Output() commander: EventEmitter = null;
 
@@ -52,13 +45,11 @@ export class TaskViewComponent {
 	toggleDone() {
 		this.task.isDone = !this.task.isDone;
 		
-		Command c = new Command(CommandTypes.TASK_COMPLETE_TOGGLE, this.task);
-		this.commander.next(c);
+		super.emitCommand(CommandTypes.TASK_COMPLETE_TOGGLE);
 	}
 
 	editTask() {
-		Command c = new Command(CommandTypes.TASK_EDIT, this.task);
-		this.commander.next(c);
+		super.emitCommand(CommandTypes.TASK_EDIT);
 	}
 	
 	canEdit() {
