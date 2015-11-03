@@ -1,6 +1,7 @@
-import { Component, View, Input, Output, EventEmitter, NgFor } from "angular2/angular2";
+import { Component, View, Input, Output, EventEmitter, NgFor, NgIf } from "angular2/angular2";
 import { TaskItem } from "./models";
-import { TaskComponent } from "./components/task-component";
+import { TaskComponent } from "./components/_task-component";
+import { TaskBaseComponent } from "./components/task-base-component";
 
 @Component({
 	selector: "task-list"	
@@ -12,16 +13,34 @@ import { TaskComponent } from "./components/task-component";
 			.task-list {
 				list-style: none;
 			}
+		
+			<!-- for the header column widths --> 
+			${TaskBaseComponent.baseStyles}
+
+			.task-list-line-header {
+				font-weight: bold;
+			}
 		</style>
 		
 		<h5>Your task list</h5>
+		
+		<!-- header - separate component would be a little extreme! -->
+
 		<ul class="task-list">
+			<li>
+				<ul class="task-list-line task-list-line-header">
+					<li class="col1">&nbsp;</li>
+					<li class="col2">Task description</li>
+					<li class="col3">Completed?</li>
+				</ul>
+				<div class="clear"></div>
+			</li>
 			<li *ng-for="#t of tasks">
 				<task [task]="t" (commander)="doCommand($event)"></task>
 			</li>
 		</ul>
 	`,
-	directives: [NgFor, TaskComponent]
+	directives: [NgIf, NgFor, TaskComponent]
 })
 
 export class TaskListComponent {
