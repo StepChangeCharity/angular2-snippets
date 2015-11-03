@@ -2,6 +2,16 @@ import { Component, View, EventEmitter, Input, Output, NgClass, NgIf, FORM_DIREC
 import { TaskItem, Command, CommandTypes, EditMode } from "../models";
 
 export class BaseTaskComponent {
+	// "task" will be initialised via AngularJS DI
+	task: TaskItem;
+
+	// "commander" is initialised in the constructor as EventEmitter is not 
+	// created by Angular DI
+	commander: EventEmitter;
+	
+	constructor() {
+		this.commander = new EventEmitter();		
+	}
 	
 	/// <summary>
 	/// Sends a command to the parent/owning component about
@@ -17,6 +27,9 @@ export class BaseTaskComponent {
 	/// Common styles used by inherited components
 	/// </summary>
 	static baseStyles: string = `
+		button {
+			cursor: pointer;
+		}
 		.task-list-line {
 			list-style: none;				
 		}

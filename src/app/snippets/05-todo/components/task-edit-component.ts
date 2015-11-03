@@ -3,7 +3,11 @@ import { BaseTaskComponent } from "./base-task-component";
 import { TaskItem, Command, CommandTypes, EditMode } from "../models";
 
 @Component({
-	selector: "task-edit"
+	selector: "task-edit",
+
+	// _Must_ use this method of inputs/outputs when using component inheritance 
+	inputs: ["task"],
+	outputs: ["commander"]
 })
 
 @View({
@@ -33,11 +37,9 @@ import { TaskItem, Command, CommandTypes, EditMode } from "../models";
 
 
 export class TaskEditComponent extends BaseTaskComponent {
-	@Input() task: TaskItem = null;
-	@Output() commander: EventEmitter = null;
 
 	constructor() {
-		this.commander = new EventEmitter();
+		super();
 	}
 
 	saveTask() {
