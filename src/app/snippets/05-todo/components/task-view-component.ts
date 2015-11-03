@@ -1,5 +1,5 @@
 import { Component, View, EventEmitter, Input, Output, NgClass, NgIf, FORM_DIRECTIVES } from "angular2/angular2";
-import { BaseTaskComponent } from "./base-task-component";
+import { BaseTaskComponent } from "./task-base-component";
 import { TaskItem, Command, CommandTypes, EditMode } from "../models";
 
 @Component({
