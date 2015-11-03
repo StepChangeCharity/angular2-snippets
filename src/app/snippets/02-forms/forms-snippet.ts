@@ -18,63 +18,68 @@ import {
 
 @View({
 	template: `
-		<h2>Forms Snippet</h2>
-		<p>
-			Illustrates using forms
-		</p>
-		
-		<h3>Issues</h3>
-		<p>
-			1 - Can't find a way of setting the data in the form once it's been loaded - having to resort to rebuilding the form!
-		</p>
-		
-		<h3>Resources</h3>
-		 - <a href="http://plnkr.co/edit/23DESOpbNnBpBHZt1BR4?p=preview">Plunkr illustration</a>
-		
-		<h3>Snippet</h3>
-		<hr/>
-				
-		<div>
-			<form [ng-form-model]="pwdForm">
-				<div>
-					<label for="email">email</label>
-					<input id="email" ng-control="email">
-					<span class="error-ind" *ng-if="!emailCtrl.valid">*</span>
-				</div>
-				<div ng-control-group="pwd">
-					<div>
-						<label for="password">password</label>
-						<input id="password" ng-control="password">
-						<span class="error-ind" *ng-if="!passwordCtrl.valid">*</span>
-					</div>
-					<div>
-						<label for="pwd-conf">password</label>
-						<input id="pwd-conf" ng-control="passwordConfirm">
-						<span class="error-ind" *ng-if="!passwordConfirmCtrl.valid">*</span>
-					</div>
-				</div>
-				
-				<button (click)="emulateLoad()">Emulate data load</button>
-			</form>
+		<div class="left-pane">
+			<h2>Forms Snippet</h2>
+			<p>
+				Illustrates using forms
+			</p>
+			
+			<h3>Issues</h3>
+			<p>
+				1 - Can't find a way of setting the data in the form once it's been loaded - having to resort to rebuilding the form!
+			</p>
+			
+			<h3>Resources</h3>
+			- <a href="http://plnkr.co/edit/23DESOpbNnBpBHZt1BR4?p=preview">Plunkr illustration</a>
 		</div>
-		
-		<div>
-			<h3>Value:</h3>
-			<pre>{{cgValue}}</pre>
-			<h3>Validity:</h3>
-			<pre>{{pwdForm.valid}}</pre>
+			
+		<div class="right-pane">			
+			<h3>Snippet</h3>
+			<hr/>
+					
+			<div>
+				<form [ng-form-model]="pwdForm">
+					<div>
+						<label for="email">email</label>
+						<input id="email" ng-control="email">
+						<span class="error-ind" *ng-if="!emailCtrl.valid">*</span>
+					</div>
+					<div ng-control-group="pwd">
+						<div>
+							<label for="password">password</label>
+							<input id="password" ng-control="password">
+							<span class="error-ind" *ng-if="!passwordCtrl.valid">*</span>
+						</div>
+						<div>
+							<label for="pwd-conf">password</label>
+							<input id="pwd-conf" ng-control="passwordConfirm">
+							<span class="error-ind" *ng-if="!passwordConfirmCtrl.valid">*</span>
+						</div>
+					</div>
+					
+					<button (click)="emulateLoad()">Emulate data load</button>
+				</form>
+			</div>
+			
+			<div>
+				<h3>Value:</h3>
+				<pre>{{cgValue}}</pre>
+				<h3>Validity:</h3>
+				<pre>{{pwdForm.valid}}</pre>
+			</div>
+			
+			<style scope>
+				label {
+					width: 150px;
+					display: inline-block;
+				}
+				.error-ind {
+					color: red;
+					font-size: large;
+				}
+			</style>
 		</div>
-		
-		<style scope>
-			label {
-				width: 150px;
-				display: inline-block;
-			}
-			.error-ind {
-				color: red;
-				font-size: large;
-			}
-		</style>
+		<div class="clear"></div>
 	`,
 	directives: [CORE_DIRECTIVES, FORM_DIRECTIVES]
 })

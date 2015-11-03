@@ -9,26 +9,30 @@ import {
 
 @View({
 	template: `
-		<h2>[Snippet Title]</h2>
-		<p>
-			[Description]
-		</p>
-		
-		<h3>Issues</h3>
-		<p>
-			[Any issues you've had, which may need further investigation]
-		</p>
-		
-		<h3>Resources</h3>
-		<p>
-			Any resources you found useful when developing this snippet (e.g. plunks, articles, etc)
-		</p>
-		
-		<h3>Snippet</h3>
-		<hr/>
-		
-		<p>your control snippet</p>
-		
+		<div class="left-pane">
+			<h2>[Snippet Title]</h2>
+			<p>
+				[Description]
+			</p>
+			
+			<h3>Issues</h3>
+			<p>
+				[Any issues you've had, which may need further investigation]
+			</p>
+			
+			<h3>Resources</h3>
+			<p>
+				Any resources you found useful when developing this snippet (e.g. plunks, articles, etc)
+			</p>
+		</div>
+
+		<div class="right-pane">				
+			<h3>Snippet</h3>
+			<hr/>
+			
+			<p>your control snippet</p>
+		</div>
+		<div class="clear"></div>			
 		
 	`,
 	directives: []
