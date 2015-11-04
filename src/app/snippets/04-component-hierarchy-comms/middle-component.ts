@@ -25,7 +25,7 @@ import { BottomComponent } from './bottom-component';
 })
 
 export class MiddleComponent {
-	@Input() middleAge: integer = 0;
+	@Input() middleAge: number = 0;
 	@Output() propagator: EventEmitter = null;
 
 	constructor() {

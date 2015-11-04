@@ -45,11 +45,11 @@ import { TaskBaseComponent } from "./components/task-base-component";
 
 export class TaskListComponent {
 	@Input() tasks: Array<TaskItem>;
-	@Output() commander: EventEmitter: null;
+	@Output() commander: EventEmitter = null;
 	
 	constructor() {
 		this.commander = new EventEmitter();
-		console.table(this.tasks);
+		//console.table(this.tasks);
 	}
 	
 	doCommand(cmd) {

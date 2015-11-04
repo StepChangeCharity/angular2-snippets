@@ -19,7 +19,7 @@ export class TaskBaseComponent {
 	/// "something" that happened (e.g. task was saved).
 	/// </summary>
 	emitCommand(cmdType: string) {
-		Command c = new Command(cmdType, this.task);
+		var c: Command = new Command(cmdType, this.task);
 		
 		this.commander.next(c);
 	}

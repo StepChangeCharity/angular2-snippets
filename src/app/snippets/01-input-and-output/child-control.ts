@@ -4,7 +4,7 @@ import { Component, View, FORM_DIRECTIVES, NgIf, Injector, EventEmitter, Input, 
 	selector: 'child-control',
 	inputs: ['amount'],
 	events: ['update']
-}
+})
 
 @View({
 	directives: [
@@ -18,8 +18,8 @@ import { Component, View, FORM_DIRECTIVES, NgIf, Injector, EventEmitter, Input, 
 })
 
 export class ChildControlComponent {
-	amount: integer = 0;
-	update: Object = null;
+	amount: number = 0;
+	update: EventEmitter = null;
 	
 	constructor() {
 		this.update = new EventEmitter();

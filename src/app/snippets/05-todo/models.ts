@@ -1,4 +1,4 @@
-/// <reference path="../../../typings/tsd.d.ts" />
+/// <reference path="../../../node_modules/angular2/typings/tsd.d.ts" />
 
 export class EditMode {
 	static READ_ONLY: string = "READ_ONLY";
@@ -7,9 +7,9 @@ export class EditMode {
 
 
 export class TaskItem {
-	static _currId: integer = 0;
+	static _currId: number = 0;
 	
-	taskId: integer = 1;
+	taskId: number = 1;
 	task: string = "";
 	createdOn: Date = new Date();
 	modifiedOn: Date = new Date();
@@ -34,9 +34,9 @@ export class CommandTypes {
 
 export class Command {
 	Type: string = "";		// e.g. "TASK_EDIT"
-	Data: object = null;
+	Data: Object = null;
 	
-	constructor(type: string, data: object) {
+	constructor(type: string, data: Object) {
 		this.Type = type;
 		this.Data = data;
 	}

@@ -20,7 +20,7 @@ import {
 })
 
 export class BottomComponent {
-	@Input() bottomAge: integer = 0;
+	@Input() bottomAge: number = 0;
 	@Output() monthlyOutput: EventEmitter = null;
 	update: EventEmitter = null;
 	

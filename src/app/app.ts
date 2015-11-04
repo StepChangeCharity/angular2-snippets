@@ -1,13 +1,13 @@
 import { Component, View } from 'angular2/angular2';
-import { ROUTER_DIRECTIVES, RouteConfig } from 'angular2/router';
-import { HomeComponent } from 'app/home';
-import { InputsAndOutputs } from 'app/snippets/01-input-and-output/inputs-and-outputs';
-import { FormsSnippet } from 'app/snippets/02-forms/forms-snippet';
-import { PipesSnippet } from 'app/snippets/03-pipes/pipes-snippet';
-import { ComponentHierarchyCommsSnippet } from 'app/snippets/04-component-hierarchy-comms/component-hierarchy-comms';
-import { ToDoApp } from 'app/snippets/05-todo/todo-app';
-import { DynamicStylingSnippet } from 'app/snippets/06-dynamic-styling/dynamic-styling';
-import { SimpleSearchPipe } from 'app/snippets/07-simple-search-pipe/search-pipe';
+import { ROUTER_DIRECTIVES, RouteConfig, RouterLink } from 'angular2/router';
+import { HomeComponent } from './home';
+import { InputsAndOutputs } from './snippets/01-input-and-output/inputs-and-outputs';
+import { FormsSnippet } from './snippets/02-forms/forms-snippet';
+import { PipesSnippet } from './snippets/03-pipes/pipes-snippet';
+import { ComponentHierarchyCommsSnippet } from './snippets/04-component-hierarchy-comms/component-hierarchy-comms';
+import { ToDoApp } from './snippets/05-todo/todo-app';
+import { DynamicStylingSnippet } from './snippets/06-dynamic-styling/dynamic-styling';
+import { SimpleSearchPipe } from './snippets/07-simple-search-pipe/search-pipe';
 
 @Component({
     selector: 'app'
@@ -15,28 +15,27 @@ import { SimpleSearchPipe } from 'app/snippets/07-simple-search-pipe/search-pipe
 
 @View({
 	template: `
-	<p><a href="#/Home">/home</a></p>
+	<p><a [router-link]="['/Home']">/home</a></p>
 	<router-outlet></router-outlet>
 	`,
 	directives : [ROUTER_DIRECTIVES]
 })
 
 @RouteConfig([
-  { path: '/', redirectTo: '/Home' },
-  { path: '/Home', component: HomeComponent, as: 'Home' },
-	{ path: '/01-input-and-output', component: InputsAndOutputs, as: "InputAndOutputSnippet"},
-	{ path: '/02-forms', component: FormsSnippet, as: "FormsSnippet"},
-	{ path: '/03-pipes', component: PipesSnippet, as: "PipesSnippet"},
-	{ path: '/04-component-hierarchy-comms', component: ComponentHierarchyCommsSnippet, as: "PipesSnippet"},
-	{ path: '/05-todo-app', component: ToDoApp, as: "ToDoApp"},
-	{ path: '/06-dynamic-styling', component: DynamicStylingSnippet, as: "DynamicStylingSnippet"},
-	{ path: '/07-simple-search-pipe', component: SimpleSearchPipe, as: "SimpleSearchPipe"}
+	{ path: '/', redirectTo: '/home' },
+	{ path: '/home',                         as: 'Home',           component: HomeComponent },
+	{ path: '/01-in-out',                    as: "InAndOut",       component: InputsAndOutputs },
+	{ path: '/02-forms',                     as: "Forms",          component: FormsSnippet },
+	{ path: '/03-pipes',                     as: "Pipes",          component: PipesSnippet },
+	{ path: '/04-component-hierarchy',       as: "CompHierarchy",  component: ComponentHierarchyCommsSnippet },
+	{ path: '/05-todo-app',                  as: "ToDoApp",        component: ToDoApp },
+	{ path: '/06-dynamic-styling',           as: "DynamicStyling", component: DynamicStylingSnippet },
+	{ path: '/07-simple-search-pipe',        as: "SimpleSearch",   component: SimpleSearchPipe }
 ])
 
 export class AppComponent {
 
   constructor() {
-		
   }
 
 }

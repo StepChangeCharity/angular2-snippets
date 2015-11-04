@@ -29,9 +29,9 @@ import { MiddleComponent } from './middle-component';
 })
 
 export class TopComponent {
-	topAge: integer = 0;
-	ageInMonths: integer = 0;
-	ageInDecades: integer = 0;
+	topAge: number = 0;
+	ageInMonths: number = 0;
+	ageInDecades: number = 0;
 	
 	onBlur(newage) {
 		this.topAge = newage.value;

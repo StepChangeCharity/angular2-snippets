@@ -1,63 +1,40 @@
 <!doctype html>
 <html lang="en">
+	
 	<head>
+		<base href=".">
 		<meta charset="UTF-8">
+
 		<title>Angular2 Snippets!</title>
-		<style>
-			* {
-				box-sizing: border-box;
-				-moz-box-sizing: border-box;
+
+		<link rel="stylesheet" href="./index.css">
+		<link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+		{{content-for 'head'}}
+
+		<script src="vendor/systemjs/dist/system.src.js"></script>
+		<script src="vendor/angular2/bundles/angular2.dev.js"></script>
+		<script src="vendor/angular2/bundles/http.dev.js"></script>
+		<script src="vendor/angular2/bundles/router.dev.js"></script>
+		
+		<script>
+		System.config({
+			packages: {
+				app: {
+					format: 'register',
+					defaultExtension: 'js'
+				}
 			}
-			body { 
-				font-family: "Corbel", "Calibri", "Arial";
-			}
-			.left-pane {
-				width: 50%;
-				float: left;
-				padding: 0 5% 0 5%;
-				border-right: 1px solid #ddd;
-			}
-			.right-pane {
-				width: 50%;
-				float: right;
-				padding: 0 5% 0 5%;
-			}			
-			
-			.hac { text-align: center; }
-			.vac { vertical-align: middle; }
-			.vat { vertical-align: top}
-			.box { margin: 1em; padding: 2em; position: relative; width: 25%; }
-			.box-label { 
-				position: absolute; 
-				top: -1em; 
-				left: 0.1em; 
-				text-transform: uppercase; 
-				font-size: small; 
-				font-weight: bold;
-				padding: 0.1em 0.5em 0.1em 0.5em;
-				background-color: #dddddd; 
-			}
-			.box-top { border: solid 2px silver; float: left; width: 22em; }
-			.box-middle { border: solid 2px darksalmon; width: 16em; }
-			.box-bottom { border: solid 2px blueviolet; width: 10em; }
-			.border3::after {clear: both;}
-			.no-bullets {
-				list-style: none;
-			}
-			.fl { float: left }
-			.fr { float: right }
-			.clear { clear: both }
-			.ib { display: inline-block; }
-		</style>
+		});
+		System
+			.import('app.js')
+			.then(null, console.error.bind(console))
+		;
+		</script>		
 	</head>
+	
 	<body>
 		<app>Loading Angular2 Snippets ...</app>
-
-		<!-- build:js js/app.js -->
-		<script src="jspm_packages/system.js"></script>
-		<script src="config.js"></script>
-
-		<script>System.import("app").catch(console.log.bind(console));</script>
-		<!-- endbuild -->
 	</body>
+	
 </html>

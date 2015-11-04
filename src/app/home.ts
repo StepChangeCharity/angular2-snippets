@@ -1,4 +1,5 @@
 import { Component, View, NgIf, Injector } from 'angular2/angular2';
+import { RouterLink } from 'angular2/router';
 
 @Component({
 	selector: "home"
@@ -7,16 +8,18 @@ import { Component, View, NgIf, Injector } from 'angular2/angular2';
 @View({
 	template: `
 		<ol>
-			<li><a href="#/01-input-and-output">Inputs &amp; Outputs</a></li>
-			<li><a href="#/02-forms">Forms</a></li>			
-			<li><a href="#/03-pipes">Pipes</a></li>
-			<li><a href="#/04-component-hierarchy-comms">Component Orchestration</a></li>
-			<li><a href="#/05-todo-app">ToDo Application</a></li>
-			<li><a href="#/06-dynamic-styling">Dynamic styling demo</a></li>
-			<li><a href="#/07-simple-search-pipe">Simple search pipe</a></li>
+		
+			<li><a [router-link]="['/InAndOut']">Component inputs &amp; outputs</a></li>
+			<li><a [router-link]="['/Forms']">Forms</a></li>
+			<li><a [router-link]="['/Pipes']">Pipes</a></li>
+			<li><a [router-link]="['/CompHierarchy']">Component hierarchy</a></li>
+			<li><a [router-link]="['/ToDoApp']">ToDo application</a></li>
+			<li><a [router-link]="['/DynamicStyling']">Dynamic styling</a></li>
+			<li><a [router-link]="['/SimpleSearch']">Simple search pipe</a></li>
+			
 		</ol>
 	`,
-	directives: []
+	directives: [RouterLink]
 })
 
 export class HomeComponent {

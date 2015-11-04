@@ -19,7 +19,7 @@ import {
 @View({
 	template: `
 		<div class="left-pane">
-			<h2>Forms Snippet</h2>
+			<h2>FORMS Snippet</h2>
 			<p>
 				Illustrates using forms
 			</p>
@@ -91,11 +91,11 @@ export class FormsSnippet {
 	passwordConfirmCtrl: Control = null;
 	
 	constructor() {
-		this.setupForm();
+		this.setupForm(null/*useDefault*/);
 	}
 	
 	setupForm(withData) {
-		if (withData === undefined) {
+		if (withData === undefined || withData === null) {
 			// use empty set
 			withData = {
 				email: "",

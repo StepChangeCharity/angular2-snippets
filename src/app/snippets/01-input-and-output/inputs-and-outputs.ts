@@ -1,5 +1,5 @@
 import { Component, View, NgIf, Injector } from 'angular2/angular2';
-import { ChildControlComponent } from '/app/snippets/01-input-and-output/child-control';
+import { ChildControlComponent } from './child-control';
 
 @Component({
 	selector: 'input-and-output-snippet'
@@ -39,8 +39,8 @@ import { ChildControlComponent } from '/app/snippets/01-input-and-output/child-c
 })
 
 export class InputsAndOutputs {
-	startAmount: integer = 0;
-	squaredAmount: integer = 0;
+	startAmount: number = 0;
+	squaredAmount: number = 0;
 	showAnswer: boolean = false;
 	
 	constructor() {	

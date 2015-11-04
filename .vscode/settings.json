@@ -8,7 +8,6 @@
 		"**/typings": true,
 		"**/.vscode": true,
 		".gitattributes": true,
-		"package.json": true,
 		"tsconfig.json": true,
 		"tsd.json": true
 	},
