@@ -54,3 +54,6 @@ typings/**
 ##Temp files
 tmp/**
 
+##Distribution Code
+dist/**
+
