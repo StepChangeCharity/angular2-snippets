@@ -1,8 +1,9 @@
 /// <reference path="../../../references.ts" />
 
-import { Component, View } from "angular2/angular2";
+import { Component, View, Injector } from "angular2/angular2";
 import { TaskListComponent } from "./task-list-component";
 import { TaskItem, CommandTypes, Command } from "./models";
+import { MemoryStore } from "./services/store/store";
 
 @Component({
 	selector: "todo-app"
@@ -23,6 +24,7 @@ import { TaskItem, CommandTypes, Command } from "./models";
 				<li>Component communication with inputs &amp; outputs</li>
 				<li>Using a [root] component orchestrator (for communication)</li>
 				<li>View/Edit mode handling</li>
+				<li>Interfaces</li>
 			</ul>
 
 			<h3>Issues - Component Inheritance</h3>
@@ -52,9 +54,12 @@ import { TaskItem, CommandTypes, Command } from "./models";
 })
 
 export class ToDoApp {
+	_store: MemoryStore = null;
 	masterList: Array<TaskItem>;
 	
-	constructor() {
+	constructor(store: MemoryStore) {
+		debugger;
+		this._store = store;
 		this.createStarterList();
 	}
 	
