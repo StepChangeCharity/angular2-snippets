@@ -1,4 +1,4 @@
-/// <reference path="../../../node_modules/angular2/typings/tsd.d.ts" />
+/// <reference path="../../../references.ts" />
 
 export class EditMode {
 	static READ_ONLY: string = "READ_ONLY";

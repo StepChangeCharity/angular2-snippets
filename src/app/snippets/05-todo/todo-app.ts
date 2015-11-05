@@ -1,3 +1,5 @@
+/// <reference path="../../../references.ts" />
+
 import { Component, View } from "angular2/angular2";
 import { TaskListComponent } from "./task-list-component";
 import { TaskItem, CommandTypes, Command } from "./models";
@@ -22,11 +24,11 @@ import { TaskItem, CommandTypes, Command } from "./models";
 				<li>Using a [root] component orchestrator (for communication)</li>
 				<li>View/Edit mode handling</li>
 			</ul>
-			
+
 			<h3>Issues - Component Inheritance</h3>
 			<p>
 				When using <i>Component Inheritance</i> use the <strong>inputs: ["xyz"]</strong> form
-				for defining inputs &amp; outputs. 
+				for defining inputs &amp; outputs.
 			</p>
 			<p>
 				When using the <strong>@Input ...</strong> approach you end up with two distinct variables
@@ -34,7 +36,7 @@ import { TaskItem, CommandTypes, Command } from "./models";
 				- using the <strong>inputs: ["sadf"]</strong> method the input is created via DI, and Angular
 				in essence creates it in the super class (which is what we <i>do</i> want).
 			</p>
-			
+
 			<h3>Resources</h3>
 			<p>n/a</p>
 		</div>

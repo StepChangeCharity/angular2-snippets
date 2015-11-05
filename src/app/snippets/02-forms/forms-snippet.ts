@@ -1,4 +1,6 @@
-import { 
+/// <reference path="../../../references.ts" />
+
+import {
   Component,
   View,
   Control,

@@ -1,3 +1,5 @@
+/// <reference path="../../../references.ts" />
+
 import { Component, View, NgFor } from 'angular2/angular2';
 import { UserRenderer } from './user-renderer';
 

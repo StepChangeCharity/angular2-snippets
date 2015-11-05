@@ -1,4 +1,6 @@
-import { 
+/// <reference path="../../../references.ts" />
+
+import {
 	Component, View, NgIf, Injector, 
 	EventEmitter, Input, Output
 } from 'angular2/angular2';

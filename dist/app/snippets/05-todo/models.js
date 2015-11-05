@@ -1,4 +1,5 @@
 /// <reference path="../../../node_modules/angular2/typings/tsd.d.ts" />
+
 System.register([], function(exports_1) {
     var EditMode, TaskItem, CommandTypes, Command;
     return {

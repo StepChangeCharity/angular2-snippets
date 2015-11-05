@@ -1,3 +1,5 @@
+/// <reference path="../../../references.ts" />
+
 import {Pipe} from "angular2/angular2";
 
 @Pipe({

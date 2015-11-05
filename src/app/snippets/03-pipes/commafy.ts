@@ -1,3 +1,5 @@
+/// <reference path="../../../references.ts" />
+
 import { Component, View, Pipe, bootstrap, bind, PipeTransform } from 'angular2/angular2';
 
 @Pipe({

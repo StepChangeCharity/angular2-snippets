@@ -1,3 +1,5 @@
+/// <reference path="../../../references.ts" />
+
 import { Component, View, Input, Output, EventEmitter, NgFor, NgIf } from "angular2/angular2";
 import { TaskItem } from "./models";
 import { TaskComponent } from "./components/_task-component";

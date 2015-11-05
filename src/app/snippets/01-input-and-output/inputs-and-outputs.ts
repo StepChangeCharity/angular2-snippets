@@ -1,3 +1,5 @@
+/// <reference path="../../../references.ts" />
+
 import { Component, View, NgIf, Injector } from 'angular2/angular2';
 import { ChildControlComponent } from './child-control';
 

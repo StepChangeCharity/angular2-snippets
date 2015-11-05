@@ -1,3 +1,5 @@
+/// <reference path="../../../references.ts" />
+
 import {Component, View, Input, NgClass, NgIf} from "angular2/angular2";
 import {UserModel} from "./dynamic-styling";
 

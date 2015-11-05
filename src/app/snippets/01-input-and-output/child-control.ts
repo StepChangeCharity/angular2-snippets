@@ -1,3 +1,5 @@
+/// <reference path="../../../references.ts" />
+
 import { Component, View, FORM_DIRECTIVES, NgIf, Injector, EventEmitter, Input, Output } from 'angular2/angular2';
 
 @Component({
