@@ -1,4 +1,4 @@
-/// <reference path="../../../references.ts" />
+/// <reference path="../../../../references.ts" />
 
 import { Component, View, EventEmitter, Input, Output, NgClass, NgIf, FORM_DIRECTIVES } from "angular2/angular2";
 import { TaskBaseComponent } from "./task-base-component";

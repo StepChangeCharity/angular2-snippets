@@ -1,4 +1,4 @@
-/// <reference path="../../../references.ts" />
+/// <reference path="../../references.ts" />
 
 import {
 	Component, View, NgIf, Injector, 
