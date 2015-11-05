@@ -3,10 +3,12 @@
 	"files.exclude": {
 		"**/.git": true,
 		"**/.DS_Store": true,
+		"**/.idea": true,
+		"**/.vscode": true,
 		"**/jspm_packages": true,
 		"**/node_modules": true,
 		"**/typings": true,
-		"**/.vscode": true,
+		"**/tmp": true,
 		".gitattributes": true,
 		"tsconfig.json": true,
 		"tsd.json": true
