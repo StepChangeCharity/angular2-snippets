@@ -9,6 +9,7 @@
 		"**/node_modules": true,
 		"**/typings": true,
 		"**/tmp": true,
+		"**/dist": true,
 		".gitattributes": true,
 		"tsconfig.json": true,
 		"tsd.json": true
