@@ -1,15 +1,43 @@
 import { Injectable } from 'angular2/angular2';
 import { TaskItem, CommandTypes, Command } from "../../models";
 
+
+/**
+ * Specifies how a storage mechanism should be implemented
+ */
 export interface IStore {
+	/** @function 
+	 * @name clearList
+	 * @desc Clears the list back to an empty list
+	*/
+	clearList(): void;
 	
-	saveList(items: Array<TaskItem>): void;
+	/** @function 
+	 * @name saveList
+	 * @desc Persists the list to whatever persistence mechanism is being implemented.
+	*/
+	saveList(): void;
 	
-	loadList(): Array<TaskItem>;
+	/** @function 
+	 * @name loadList
+	 * @desc Loads the list from whatever persistence mechanism is being implemented.
+	*/
+	loadList(): void;
 	
+	/** @function 
+	 * @name makeDefaultList
+	 * @desc Clears the current list and adds some default noddy data in it's place.
+	*/
 	makeDefaultList(): void;
 }
 
+
+
+/**
+ * BaseStore:
+ * Provides the underlying [memory] data store for the items
+ * in the ToDo list.
+ */
 class BaseStore {
 	protected _data: Array<TaskItem> = null;
 	
@@ -21,6 +49,9 @@ class BaseStore {
 		this._data = value;
 	}
 	
+	clearList(): void {
+		this._data = new Array<TaskItem>();
+	}
 	
 	makeDefaultList(): void {
 		let defaultList: Array<TaskItem> = null;
@@ -34,6 +65,11 @@ class BaseStore {
 	
 }
 
+
+/**
+ * MemoryStore:
+ * An in-memory storage mechanism for an IStore (i.e. saving does nothing!).
+ */
 export class MemoryStore extends BaseStore implements IStore {
 
 	constructor() {
@@ -45,50 +81,55 @@ export class MemoryStore extends BaseStore implements IStore {
 		// default store has no persistence, just use the default list
 		super.makeDefaultList();
 		
-		return this._data;
+		return this.data;
 	}
 	
-	saveList(items: Array<TaskItem>): void {
-		// no saving on in-memory version
-		this._data = items;
+	saveList(): void {
+		// no saving on in-memory version		
 	}
 
-	makeDefaultList(): void {
-		super.makeDefaultList();
-	}
-	
 }
 
+
+
+/**
+ * LocalStorageStore:
+ * An IStore store using local storage for persistence.
+ */
 export class LocalStorageStore extends BaseStore implements IStore {
 
 	static STORE_KEY: string = "todo::list";
 
 	constructor() {
 		super();
-		console.log("ToDo app using LocalStorage");
+		console.log("ToDo app using LocalStorageStore");
 	}
 
 	loadList(): Array<TaskItem> {
 		let json = window.localStorage.getItem( LocalStorageStore.STORE_KEY );
+		 
 		if (json) {
-			this._data = JSON.parse(json);
+			this.data = JSON.parse(json);
+		} else	{
+			this.clearList();
 		}
-		return new Array<TaskItem>();
+		
+		return this.data;
 	}
 
-	saveList(items: Array<TaskItem>): void {
-		// update local store
-		this._data = items;
-		
-		// and save to local storage
-		let json = JSON.stringify(items);
+	saveList(): void {
+		let json = JSON.stringify(this.data);
+
 		window.localStorage.setItem(LocalStorageStore.STORE_KEY, json);
 	}
-
-	makeDefaultList(): void {
-		return super.makeDefaultList();
+	
+	clearList(): void {
+		super.clearList();
+		
+		localStorage.removeItem(LocalStorageStore.STORE_KEY);
 	}
 
-
 }
+
+
 

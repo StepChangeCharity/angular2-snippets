@@ -46,34 +46,41 @@ import { MemoryStore } from "./services/store/store";
 			<h3>Snippet</h3>
 			<hr/>
 			
-			<task-list [tasks]="masterList" (commander)="doCommand($event)"></task-list>
+			<task-list [tasks]="store.data" (commander)="doCommand($event)"></task-list>
+			
+			<button (click)="onSave()">Save</button>
+			<button (click)="onClear()">Clear</button>
+			<button (click)="onDefaults()">Default List</button>
 		</div>
-		<div class="clear"></div>
 	`,
 	directives: [TaskListComponent]
 })
 
 export class ToDoApp {
-	_store: MemoryStore = null;
-	masterList: Array<TaskItem>;
+	store: MemoryStore;
 	
 	constructor(store: MemoryStore) {
-		debugger;
-		this._store = store;
-		this.createStarterList();
+		this.store = store;
+		this.store.loadList();
+		if (this.store.data.length === 0) {
+			// use the default list
+			this.store.makeDefaultList();
+			this.store.loadList();
+		}
 	}
 	
-	
-	createStarterList() {
-		this.masterList = [
-			new TaskItem("Do big shop"),
-			new TaskItem("Make tea", true),
-			new TaskItem("Eat mice with sugar"),
-		];		
-		
-		//console.table(this.masterList);
+	onSave(): void {
+		this.store.saveList();
 	}
 	
+	onClear(): void {
+		this.store.clearList();
+	}
+	
+	onDefaults(): void {
+		this.store.makeDefaultList();
+	}
+
 	doCommand(cmd) {
 		if (cmd.Type === CommandTypes.TASK_EDIT) {
 			console.log("BOOM!");
