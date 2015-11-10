@@ -1,4 +1,5 @@
-import { Injectable } from 'angular2/angular2';
+import { Injector, Injectable, Inject } from 'angular2/angular2';
+import { HTTP_BINDINGS, Http } from 'angular2/http';
 import { TaskItem, CommandTypes, Command } from "../../models";
 
 
@@ -22,7 +23,7 @@ export interface IStore {
 	 * @name loadList
 	 * @desc Loads the list from whatever persistence mechanism is being implemented.
 	*/
-	loadList(): void;
+	loadList(): Array<TaskItem>;
 	
 	/** @function 
 	 * @name makeDefaultList
@@ -40,6 +41,10 @@ export interface IStore {
  */
 class BaseStore {
 	protected _data: Array<TaskItem> = null;
+	
+	constructor() {
+		this.clearList();
+	}
 	
 	public get data(): Array<TaskItem> {
 		return this._data;
@@ -132,4 +137,42 @@ export class LocalStorageStore extends BaseStore implements IStore {
 }
 
 
+/**
+ * ApiStorageStore:
+ * An IStore store using the sheetsUI Google Sheets API for persistence.
+ */
+export class ApiStorageStore extends BaseStore implements IStore {
+	static API_ENDPOINT: string = "https://sheetsu.com/apis/d4299c26";
+	_http: Http = null;
+	
+	constructor() {
+		super();
+		this.resolveDependencies();
+		
+		console.log("ToDo app using ApiStorageStore", this._http);
+	}
+	
+	resolveDependencies(): void {
+		let injector = Injector.resolveAndCreate([
+			HTTP_BINDINGS
+		]);
+		this._http = injector.get(Http);
+	}
+
+	loadList(): Array<TaskItem> {
+		
+		
+		return new Array<TaskItem>();
+	}
+	
+	saveList(): void {
+		
+	}
+	
+	clearList(): void {
+		super.clearList();
+		
+	}
+	
+}
 
