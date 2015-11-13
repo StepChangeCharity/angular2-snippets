@@ -4,6 +4,7 @@ import { Component, View, Injector } from "angular2/angular2";
 import { TaskListComponent } from "./task-list-component";
 import { TaskItem, CommandTypes, Command } from "./models";
 import { MemoryStore } from "./services/store/store";
+import { ToasterComponent } from "./components/toaster-component";
 
 @Component({
 	selector: "todo-app"
@@ -42,7 +43,8 @@ import { MemoryStore } from "./services/store/store";
 			<h3>Resources</h3>
 			<p>n/a</p>
 		</div>
-		<div class="right-pane">			
+		<div class="right-pane">
+			<toaster></toaster>			
 			<h3>Snippet</h3>
 			<hr/>
 			
@@ -53,7 +55,7 @@ import { MemoryStore } from "./services/store/store";
 			<button (click)="onDefaults()">Default List</button>
 		</div>
 	`,
-	directives: [TaskListComponent]
+	directives: [TaskListComponent, ToasterComponent]
 })
 
 export class ToDoApp {
@@ -81,7 +83,9 @@ export class ToDoApp {
 		this.store.makeDefaultList();
 	}
 
-	doCommand(cmd) {
+	doCommand(cmd: Command) {
+		let task = <TaskItem>cmd.Data;
+		
 		if (cmd.Type === CommandTypes.TASK_EDIT) {
 			console.log("BOOM!");
 			// TODO: add a edit/add line
@@ -89,6 +93,8 @@ export class ToDoApp {
 			// replace existing data (I suspect it's a reference of data flying around so we won't need to replace it in the list)
 			//		- though will need to add to the array when we're doing an "add" command
 		}
+		
+		
 	} 
 	
 }
