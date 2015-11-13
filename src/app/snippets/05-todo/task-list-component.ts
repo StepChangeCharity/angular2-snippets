@@ -31,6 +31,7 @@ import { TaskBaseComponent } from "./components/task-base-component";
 		<ul class="task-list">
 			<li>
 				<ul class="task-list-line task-list-line-header">
+					<li class="col0">Id</li>
 					<li class="col1">&nbsp;</li>
 					<li class="col2">Task description</li>
 					<li class="col3">Completed?</li>

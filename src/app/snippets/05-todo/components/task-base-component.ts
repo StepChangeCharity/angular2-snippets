@@ -47,6 +47,7 @@ export class TaskBaseComponent {
 			text-decoration: line-through;
 		}
 		
+		.task-list-line .col0 { width: 2em;  }
 		.task-list-line .col1 { width: 3em;  }
 		.task-list-line .col2 { width: 20em; }
 		.task-list-line .col3 { width: 2em;  }		

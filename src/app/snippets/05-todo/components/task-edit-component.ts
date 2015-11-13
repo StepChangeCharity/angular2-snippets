@@ -19,6 +19,7 @@ import { TaskItem, Command, CommandTypes, EditMode } from "../models";
 		</style>
 		
 		<ul class="task-list-line">
+			<li class="col0">{{task.taskId}}</li>
 			<li class="col1">
 				<button (click)="saveTask()">save</button>
 			</li>
