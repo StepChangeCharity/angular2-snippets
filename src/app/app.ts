@@ -15,7 +15,7 @@ import { SimpleSearchPipe } from './snippets/07-simple-search-pipe/search-pipe';
 
 @View({
 	template: `
-	<p><a [router-link]="['/Home']">/home</a></p>
+	<p style="margin:0;padding:0;"><a [router-link]="['/Home']">/home</a></p>
 	<router-outlet></router-outlet>
 	`,
 	directives : [ROUTER_DIRECTIVES]
