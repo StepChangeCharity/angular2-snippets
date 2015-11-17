@@ -1,10 +1,13 @@
 /// <reference path="../../../references.ts" />
 
-import { Component, View, Injector } from "angular2/angular2";
+import { Component, View, Injector, Observable, EventEmitter } from "angular2/angular2";
 import { TaskListComponent } from "./task-list-component";
 import { TaskItem, CommandTypes, Command } from "./models";
 import { MemoryStore } from "./services/store/store";
 import { ToasterComponent } from "./components/toaster-component";
+import { CommsService } from "./services/comms-service"; 
+import { ToasterTypes, Toaster } from "./models"; 
+
 
 @Component({
 	selector: "todo-app"
@@ -60,15 +63,38 @@ import { ToasterComponent } from "./components/toaster-component";
 
 export class ToDoApp {
 	store: MemoryStore;
+	commsService: CommsService; 
 	
-	constructor(store: MemoryStore) {
+	constructor(store: MemoryStore, comms: CommsService) {
+		this.commsService = comms;
+		this.commsService.apiPipeline.toRx().subscribe( (cmd) => this.processCommand(cmd) );
+		this.commsService.toasterPipeline.toRx().subscribe( (cmd) => this.processCommand(cmd) );
 		this.store = store;
-		this.store.loadList();
-		if (this.store.data.length === 0) {
-			// use the default list
-			this.store.makeDefaultList();
-			this.store.loadList();
+	}
+	
+	onInit() {
+		// wait to load the list until all the subscribers are registered
+		this.store.loadList();		
+	}
+	
+	processCommand(cmd: Command) {
+		let t: Toaster = null;
+		
+		switch (cmd.Type) {
+			case CommandTypes.TASK_GETALL_START:
+				t = new Toaster(ToasterTypes.TOAST_WARNING, "Loading data .. this may take a while ...");
+				this.commsService.toasterPipeline.next(t);
+			break;
+			case CommandTypes.TASK_GETALL_COMPLETE:
+				t = new Toaster(ToasterTypes.TOAST_SUCCESS, "Data loaded ...");
+				this.commsService.toasterPipeline.next(t);
+			break;
+			case CommandTypes.TASK_GETALL_ERROR:
+				t = new Toaster(ToasterTypes.TOAST_ERROR, <string>cmd.Data);
+				this.commsService.toasterPipeline.next(t);
+			break;
 		}
+
 	}
 	
 	onSave(): void {
@@ -86,14 +112,22 @@ export class ToDoApp {
 	doCommand(cmd: Command) {
 		let task = <TaskItem>cmd.Data;
 		
-		if (cmd.Type === CommandTypes.TASK_EDIT) {
-			console.log("BOOM!");
-			// TODO: add a edit/add line
-			// transfer the task over when editing (perhaps disable the row too), put it in a red background or something
-			// replace existing data (I suspect it's a reference of data flying around so we won't need to replace it in the list)
-			//		- though will need to add to the array when we're doing an "add" command
-		}
+		// if (cmd.Type === CommandTypes.TASK_EDIT) {
+		// 	console.log("BOOM!");
+		// 	// TODO: add a edit/add line
+		// 	// transfer the task over when editing (perhaps disable the row too), put it in a red background or something
+		// 	// replace existing data (I suspect it's a reference of data flying around so we won't need to replace it in the list)
+		// 	//		- though will need to add to the array when we're doing an "add" command
+		// }
 		
+		switch (cmd.Type) {
+			case CommandTypes.TASK_EDIT:
+				// nothing to do
+			break;
+			case CommandTypes.TASK_SAVE:
+				this.store.saveTask(task);
+			break;
+		}
 		
 	} 
 	

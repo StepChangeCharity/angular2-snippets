@@ -1,18 +1,8 @@
 /// <reference path="../../../../references.ts" />
 
 import { Component, View, Injector } from "angular2/angular2";
-
-export class Toaster {
-	constructor(type: string, msg: string) {
-		this.type = type;
-		this.message = msg;
-	}
-	
-	// "success" | "warning" | "error"
-	type: string;
-	
-	message: string;	
-}
+import { CommsService } from "../services/comms-service";
+import { Toaster } from "../models"; 
 
 @Component({
 	selector: "toaster"
@@ -31,9 +21,9 @@ export class Toaster {
 				/* default to grey background in case we're passed a type we don't know about */
 				background-color: #ddd;
 			}
-			.toaster-type-success { background-color: #9BE49B; }
-			.toaster-type-warning { background-color: #FFD7C2; }
-			.toaster-type-error   { background-color: #FFA9A9; }
+			.toaster-type-TOAST_SUCCESS { background-color: #9BE49B; }
+			.toaster-type-TOAST_WARNING { background-color: #FFD7C2; }
+			.toaster-type-TOAST_ERROR   { background-color: #FFA9A9; }
 			.toaster-message {
 				padding: 0; margin: 0;
 			}
@@ -49,11 +39,17 @@ export class Toaster {
 })
 
 export class ToasterComponent {
-	toast: Toaster = null;
+	commsService: CommsService = null;
+	toast: Toaster = new Toaster("", "");
 	
-	constructor() {
-		//this.toast = new Toaster("success", "Hello there!");
-		this.toast = new Toaster("", "");
+	constructor(comms: CommsService) {
+		this.commsService = comms;
+
+		this.commsService.toasterPipeline.toRx().subscribe( (data) => {
+			this.toast = <Toaster>data;
+		});
 	}
+	
+	
 }
 

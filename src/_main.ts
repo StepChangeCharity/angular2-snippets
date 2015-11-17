@@ -1,7 +1,8 @@
 import { bootstrap, bind } from 'angular2/angular2';
 import { ROUTER_BINDINGS, ROUTER_PRIMARY_COMPONENT, LocationStrategy, HashLocationStrategy } from 'angular2/router';
 import { HTTP_BINDINGS, HTTP_PROVIDERS, Http } from 'angular2/http';
-import { IStore, MemoryStore, LocalStorageStore, ApiStorageStore } from "./app/snippets/05-todo/services/store/store"; 
+import { IStore, MemoryStore, LocalStorageStore, ApiStorageStore } from "./app/snippets/05-todo/services/store/store";
+import { CommsService } from "./app/snippets/05-todo/services/comms-service"; 
 import { AppComponent } from './app/app';
 
 bootstrap(AppComponent, [
@@ -14,5 +15,7 @@ bootstrap(AppComponent, [
 		// , MemoryStore
 		// , bind(MemoryStore).toClass(LocalStorageStore)
 		 , bind(MemoryStore).toClass(ApiStorageStore)		
+//		, bind(CommsService).toClass(CommsService)
+		, CommsService
 ]).catch(err => console.error(err));
 
