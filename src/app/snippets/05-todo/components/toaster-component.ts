@@ -39,6 +39,8 @@ import { Toaster } from "../models";
 })
 
 export class ToasterComponent {
+	static TOASTER_TIMEOUT: number = 3000;
+	
 	commsService: CommsService = null;
 	toast: Toaster = new Toaster("", "");
 	
@@ -46,7 +48,14 @@ export class ToasterComponent {
 		this.commsService = comms;
 
 		this.commsService.toasterPipeline.toRx().subscribe( (data) => {
+			// show the new toast
 			this.toast = <Toaster>data;
+			
+			setTimeout(function() {
+				// user has had time to read the message, so clear it off
+				this.toast.message = "";
+				
+			}.bind(this), ToasterComponent.TOASTER_TIMEOUT);
 		});
 	}
 	
