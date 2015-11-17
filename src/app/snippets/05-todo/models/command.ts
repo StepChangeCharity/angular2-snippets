@@ -9,8 +9,6 @@ export enum CommandType {
 	Empty,
 	TaskEdit,
 	TaskSave,
-	TaskDelete,
-	TaskArchive,
 	TaskCompleteToggle,
 	TaskGetAllStart,
 	TaskGetAllComplete,
