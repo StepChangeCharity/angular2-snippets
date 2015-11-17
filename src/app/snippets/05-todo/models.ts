@@ -22,7 +22,7 @@ export class TaskItem {
 		this.taskId = TaskItem._currId++;
 	}
 	
-	static TaskItemMapper(item: Object): TaskItem {
+	static taskItemMapper(item: Object): TaskItem {
 		// TODO: This might be improved by using a JSON revivier? 
 
 		let newTask: TaskItem = new TaskItem("", false);
@@ -36,17 +36,57 @@ export class TaskItem {
 		return newTask;
 	}
 	
-	static TaskItemsMapper(items: Array<Object>): Array<TaskItem> {
+	static taskItemsMapper(items: Array<Object>): Array<TaskItem> {
 		let newTasks: Array<TaskItem> = new Array<TaskItem>();
 		
 		items.forEach((value, index, array) => {
-			let newItem = TaskItem.TaskItemMapper(value);
+			let newItem = TaskItem.taskItemMapper(value);
 
 			newTasks.push(newItem);
 		});
 		
 		return newTasks;
 	}
+	
+	static findById(tasks: Array<TaskItem>, id: number) {
+		let foundTask = tasks.find( (t) => {
+			return t.taskId === id;
+		});
+		
+		return foundTask;
+	}
+	
+	static equals(task1: TaskItem, task2: TaskItem): boolean {
+		// Not bothered about "createdOn" and "modifiedOn"
+		if (task1.isDone !== task2.isDone)
+			return false;
+		if (task1.task !== task2.task)
+			return false;
+		if (task1.taskId !== task1.taskId)
+			return false;
+			
+		// all properties equal ..
+		return true;
+	}
+	
+	static listEquals(list1: Array<TaskItem>, list2: Array<TaskItem>): boolean {
+		let isEqual: boolean = true;
+		
+		if (list1.length !== list2.length)
+			isEqual = false;
+		else {
+			list1.forEach((t1) => {
+				let t2 = TaskItem.findById(list2, t1.taskId);
+				
+				if (!TaskItem.equals(t1, t2)) 
+					isEqual = false;
+			});
+		}
+		
+		return isEqual;
+	}
+	
+	
 	
 }
 

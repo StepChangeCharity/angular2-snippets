@@ -102,14 +102,6 @@ export class ToDoApp {
 	doCommand(cmd: Command) {
 		let task = <TaskItem>cmd.Data;
 		
-		// if (cmd.Type === CommandTypes.TASK_EDIT) {
-		// 	console.log("BOOM!");
-		// 	// TODO: add a edit/add line
-		// 	// transfer the task over when editing (perhaps disable the row too), put it in a red background or something
-		// 	// replace existing data (I suspect it's a reference of data flying around so we won't need to replace it in the list)
-		// 	//		- though will need to add to the array when we're doing an "add" command
-		// }
-		
 		switch (cmd.Type) {
 			case CommandTypes.TASK_EDIT:
 				// nothing to do
