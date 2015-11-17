@@ -4,7 +4,7 @@ import { Component, View, Injector, Observable, EventEmitter } from "angular2/an
 import { TaskListComponent } from "./task-list-component";
 import { Command, CommandType } from "./models/command";
 import { TaskItem } from "./models/task-item";
-import { MemoryStore } from "./services/store/store";
+import { LocalStorageStore } from "./services/store/store";
 import { ToasterComponent } from "./components/toaster-component";
 import { CommsService } from "./services/comms-service"; 
 import { ToasterType, Toaster } from "./models/toaster";
@@ -71,10 +71,10 @@ import { ToasterType, Toaster } from "./models/toaster";
 })
 
 export class ToDoApp {
-	store: MemoryStore;
+	store: LocalStorageStore;
 	commsService: CommsService; 
 	
-	constructor(store: MemoryStore, comms: CommsService) {
+	constructor(store: LocalStorageStore, comms: CommsService) {
 		this.commsService = comms;
 		this.commsService.apiPipeline.toRx().subscribe( (cmd) => this.processCommand(cmd) );
 		this.commsService.toasterPipeline.toRx().subscribe( (cmd) => this.processCommand(cmd) );

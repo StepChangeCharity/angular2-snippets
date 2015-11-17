@@ -10,7 +10,7 @@ import {
   beforeEachProviders
 } from 'angular2/testing';
 import {provide} from 'angular2/angular2';
-import {MemoryStore} from './store';
+import {LocalStorageStore} from './store';
 
 
 describe('Storage Service', () => {
@@ -18,7 +18,7 @@ describe('Storage Service', () => {
   beforeEachProviders(() => []);
 
 
-  it('should ...', inject([MemoryStore], (service:MemoryStore) => {
+  it('should ...', inject([LocalStorageStore], (service:LocalStorageStore) => {
 
   }));
 

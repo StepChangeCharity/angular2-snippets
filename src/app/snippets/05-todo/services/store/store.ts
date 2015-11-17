@@ -59,29 +59,6 @@ class BaseStore {
 
 
 /**
- * MemoryStore:
- * An in-memory storage mechanism for an IStore (i.e. saving does nothing!).
- */
-export class MemoryStore extends BaseStore implements IStore {
-
-	constructor() {
-		super();
-		console.log("ToDo app using MemoryStore");
-	}
-
-	loadList(): Array<TaskItem> {
-		return this.data;
-	}
-	
-	saveTask(task: TaskItem): void {
-		// no saving on in-memory version		
-	}	
-
-}
-
-
-
-/**
  * LocalStorageStore:
  * An IStore store using local storage for persistence.
  */
