@@ -2,7 +2,7 @@
 
 import { Component, View, Injector } from "angular2/angular2";
 import { CommsService } from "../services/comms-service";
-import { Toaster } from "../models"; 
+import { Toaster } from "../models/models";
 
 @Component({
 	selector: "toaster"

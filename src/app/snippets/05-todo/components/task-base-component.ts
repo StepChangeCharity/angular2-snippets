@@ -1,7 +1,7 @@
 /// <reference path="../../../../references.ts" />
 
 import { Component, View, EventEmitter, Input, Output, NgClass, NgIf, FORM_DIRECTIVES } from "angular2/angular2";
-import { TaskItem, Command, CommandTypes, EditMode } from "../models";
+import { TaskItem, Command, CommandTypes, EditMode } from "../models/models";
 
 export class TaskBaseComponent {
 	

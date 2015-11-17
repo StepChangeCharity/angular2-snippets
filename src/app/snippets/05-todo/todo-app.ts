@@ -2,11 +2,11 @@
 
 import { Component, View, Injector, Observable, EventEmitter } from "angular2/angular2";
 import { TaskListComponent } from "./task-list-component";
-import { TaskItem, CommandTypes, Command } from "./models";
+import { TaskItem, CommandTypes, Command } from "./models/models";
 import { MemoryStore } from "./services/store/store";
 import { ToasterComponent } from "./components/toaster-component";
 import { CommsService } from "./services/comms-service"; 
-import { ToasterTypes, Toaster } from "./models"; 
+import { ToasterTypes, Toaster } from "./models/models"; 
 
 
 @Component({

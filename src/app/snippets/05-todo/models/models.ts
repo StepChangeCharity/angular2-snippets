@@ -1,4 +1,4 @@
-/// <reference path="../../../references.ts" />
+/// <reference path="../../../../references.ts" />
 import { Response } from 'angular2/http';
 
 export class EditMode {
