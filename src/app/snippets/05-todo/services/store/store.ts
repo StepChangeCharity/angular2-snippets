@@ -43,18 +43,14 @@ class BaseStore {
 		this._data = value;
 	}
 	
-	findById(tsk: TaskItem): TaskItem {
-		let foundTask = this._data.find( (t) => {
-			return t.taskId === tsk.taskId;
-		});
-		
-		return foundTask;
-	}
-	
 	saveTask(task: TaskItem): void {
-		let tsk = this.findById(task);
-		console.log(tsk);
-		
+		let tsk = TaskItem.findById(this.data, task.taskId);
+
+		// taskId remains unchanged
+		tsk.isDone = task.isDone;
+		tsk.createdOn = task.createdOn;
+		tsk.modifiedOn = task.modifiedOn;
+		tsk.task = task.task;
 	}
 		
 }
@@ -123,6 +119,8 @@ export class LocalStorageStore extends BaseStore implements IStore {
 @Injectable()
 export class ApiStorageStore extends BaseStore implements IStore {
 	static API_ENDPOINT: string = "https://sheetsu.com/apis/d4299c26";
+	static CHANGE_CHECK_TIME: number = 5000;
+	
 	_http: Http = null;
 	_comms: CommsService = null;
 	
@@ -133,6 +131,10 @@ export class ApiStorageStore extends BaseStore implements IStore {
 		this._comms = cs;		
 		this.resolveDependencies();
 		this._comms.apiPipeline.toRx().subscribe((c) => this.processCommand(c));
+		
+		// Periodically check the api to see if more data has been added ...
+		// Poor man's signal r :-(
+		this.changeCheck();
 	}
 	
 	resolveDependencies(): void {
@@ -159,6 +161,38 @@ export class ApiStorageStore extends BaseStore implements IStore {
 		
 		return o;
 	}
+	
+	changeCheck(): void {
+		
+		
+		setTimeout(function() {
+			// TODO: Hit api and check local version
+			let self: ApiStorageStore = this;
+			let options: RequestOptions = self.getRequestOptions();
+			self._http
+				.get(ApiStorageStore.API_ENDPOINT, options)
+				.subscribe( (res: Response) => {
+					if (res.status !== 200)
+						// .. not fussed about failures in this one
+						return;
+					
+					let result: Array<Object> = <Array<Object>>JSON.parse(res.text()).result;
+					let newData: Array<TaskItem> = TaskItem.taskItemsMapper(result);
+
+					if (!TaskItem.listEquals(self.data, newData)) {
+						// Data from underlying source changed, just tell the user to update if they want
+						let t: Toaster = new Toaster(
+							ToasterTypes.TOAST_WARNING, 
+							`Source data has changed, use "Load List" to update your version.`
+						);
+						self._comms.toasterPipeline.next(t);
+					}				
+				})
+			;
+			
+			this.changeCheck();
+		}.bind(this), ApiStorageStore.CHANGE_CHECK_TIME);
+	}
 
 	loadList(): Array<TaskItem> {
 		let cmd: Command = null;
@@ -177,7 +211,7 @@ export class ApiStorageStore extends BaseStore implements IStore {
 					// OK
 					let result: Array<Object> = <Array<Object>>JSON.parse(res.text()).result;
 					
-					this.data = TaskItem.TaskItemsMapper(result);
+					this.data = TaskItem.taskItemsMapper(result);
 					
 					let c: Command = new Command(CommandTypes.TASK_GETALL_COMPLETE, this.data);
 					
