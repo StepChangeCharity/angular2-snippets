@@ -15,7 +15,5 @@ export class CommsService {
 		this.toasterPipeline = new EventEmitter();
 		this.apiPipeline = new EventEmitter();
 	}
-	
-	
-	
+
 }

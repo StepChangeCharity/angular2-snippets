@@ -1,94 +1,11 @@
 import { Injector, Injectable, Inject } from 'angular2/angular2';
 import { HTTP_BINDINGS, Http, RequestOptions, Response, Headers } from 'angular2/http';
+import { IStore } from "./_istore"
+import { BaseStore } from "./_base-store"
 import { Command, CommandType } from "../../models/command";
 import { Toaster, ToasterType } from "../../models/toaster";
 import { TaskItem } from "../../models/task-item";
 import { CommsService } from "../comms-service";
-
-
-/**
- * Specifies how a storage mechanism should be implemented
- */
-export interface IStore {
-	/** @function
-	 * @name saveTask
-	 * @desc Saves a single task to the persistence store
-	 */
-	saveTask(task: TaskItem): void;
-	
-	/** @function 
-	 * @name loadList
-	 * @desc Loads the list from whatever persistence mechanism is being implemented.
-	*/
-	loadList(): Array<TaskItem>;
-	
-}
-
-
-
-/**
- * BaseStore:
- * Provides the underlying [memory] data store for the items
- * in the ToDo list.
- */
-class BaseStore {
-	protected _data: Array<TaskItem> = null;
-	
-	constructor() {
-	}
-	
-	public get data(): Array<TaskItem> {
-		return this._data;
-	}
-	
-	public set data(value: Array<TaskItem>) {
-		this._data = value;
-	}
-	
-	saveTask(task: TaskItem): void {
-		let tsk = TaskItem.findById(this.data, task.taskId);
-
-		// taskId remains unchanged
-		tsk.isDone = task.isDone;
-		tsk.createdOn = task.createdOn;
-		tsk.modifiedOn = task.modifiedOn;
-		tsk.task = task.task;
-	}
-		
-}
-
-
-/**
- * LocalStorageStore:
- * An IStore store using local storage for persistence.
- */
-export class LocalStorageStore extends BaseStore implements IStore {
-
-	static STORE_KEY: string = "todo::list";
-
-	constructor() {
-		super();
-		console.log("ToDo app using LocalStorageStore");
-	}
-
-	loadList(): Array<TaskItem> {
-		let json = window.localStorage.getItem( LocalStorageStore.STORE_KEY );
-		 
-		if (json) {
-			this.data = JSON.parse(json);
-		} else	{
-			this.data = new Array<TaskItem>();
-		}
-		
-		return this.data;
-	}
-
-	saveTask(task: TaskItem): void {
-		let json = JSON.stringify(this.data);
-		window.localStorage.setItem( LocalStorageStore.STORE_KEY, json );
-	}
-
-}
 
 
 /**
@@ -98,7 +15,7 @@ export class LocalStorageStore extends BaseStore implements IStore {
 @Injectable()
 export class ApiStorageStore extends BaseStore implements IStore {
 	static API_ENDPOINT: string = "https://sheetsu.com/apis/d4299c26";
-	static CHANGE_CHECK_TIME: number = 5000;
+	static CHANGE_CHECK_TIME: number = 60000;
 	
 	_http: Http = null;
 	_comms: CommsService = null;

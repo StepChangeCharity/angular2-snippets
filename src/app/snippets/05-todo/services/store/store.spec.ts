@@ -10,7 +10,7 @@ import {
   beforeEachProviders
 } from 'angular2/testing';
 import {provide} from 'angular2/angular2';
-import {LocalStorageStore} from './store';
+import {LocalStorageStore} from './localstorage-store';
 
 
 describe('Storage Service', () => {

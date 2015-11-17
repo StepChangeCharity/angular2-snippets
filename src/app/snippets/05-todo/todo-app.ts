@@ -4,7 +4,7 @@ import { Component, View, Injector, Observable, EventEmitter } from "angular2/an
 import { TaskListComponent } from "./task-list-component";
 import { Command, CommandType } from "./models/command";
 import { TaskItem } from "./models/task-item";
-import { LocalStorageStore } from "./services/store/store";
+import { LocalStorageStore } from "./services/store/localstorage-store";
 import { ToasterComponent } from "./components/toaster-component";
 import { CommsService } from "./services/comms-service"; 
 import { ToasterType, Toaster } from "./models/toaster";
