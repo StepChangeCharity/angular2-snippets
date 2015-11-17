@@ -1,6 +1,7 @@
 import { Injector, Injectable, Inject } from 'angular2/angular2';
 import { HTTP_BINDINGS, Http, RequestOptions, Response, Headers } from 'angular2/http';
-import { TaskItem, CommandTypes, Command, Toaster, ToasterTypes } from "../../models/models";
+import { CommandTypes, Command, Toaster, ToasterTypes } from "../../models/models";
+import { TaskItem } from "../../models/task-item";
 import { CommsService } from "../comms-service";
 
 

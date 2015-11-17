@@ -2,12 +2,12 @@
 
 import { Component, View, Injector, Observable, EventEmitter } from "angular2/angular2";
 import { TaskListComponent } from "./task-list-component";
-import { TaskItem, CommandTypes, Command } from "./models/models";
+import { CommandTypes, Command } from "./models/models";
+import { TaskItem } from "./models/task-item";
 import { MemoryStore } from "./services/store/store";
 import { ToasterComponent } from "./components/toaster-component";
 import { CommsService } from "./services/comms-service"; 
-import { ToasterTypes, Toaster } from "./models/models"; 
-
+import { ToasterTypes, Toaster } from "./models/models";
 
 @Component({
 	selector: "todo-app"

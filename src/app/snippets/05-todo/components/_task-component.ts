@@ -3,7 +3,8 @@
 import { Component, View, EventEmitter, Input, Output, NgClass, NgIf, FORM_DIRECTIVES } from "angular2/angular2";
 import { TaskViewComponent } from "./task-view-component";
 import { TaskEditComponent } from "./task-edit-component";
-import { TaskItem, Command, CommandTypes, EditMode } from "../models/models";
+import { Command, CommandTypes, EditMode } from "../models/models";
+import { TaskItem } from "../models/task-item";
 
 @Component({
 	selector: "task"	
