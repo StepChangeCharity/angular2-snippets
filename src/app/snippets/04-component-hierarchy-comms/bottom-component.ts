@@ -27,7 +27,6 @@ export class BottomComponent {
 	update: EventEmitter = null;
 	
 	constructor() {
-		//debugger;
 		this.monthlyOutput = new EventEmitter();
 		this.update = new EventEmitter();
 	}
