@@ -76,9 +76,11 @@ export class ToDoApp {
 	
 	constructor(store: LocalStorageStore, comms: CommsService) {
 		this.commsService = comms;
+		this.store = store;
+
+		// setup subscriptions to receive notifications from components in the app
 		this.commsService.apiPipeline.toRx().subscribe( (cmd) => this.processCommand(cmd) );
 		this.commsService.toasterPipeline.toRx().subscribe( (cmd) => this.processCommand(cmd) );
-		this.store = store;
 	}
 	
 	onInit() {
@@ -86,6 +88,11 @@ export class ToDoApp {
 		this.store.loadList();		
 	}
 	
+	
+	/**
+	 * @desc Receives any messages from other components in the system and acts on them
+	 *       (or forwards for attention elsewhere). 
+	 */
 	processCommand(cmd: Command) {
 		let t: Toaster = null;
 		
@@ -110,6 +117,10 @@ export class ToDoApp {
 		this.store.loadList();
 	}
 	
+	
+	/**
+	 * @desc Processes the output of a command from a task component (e.g. save the data) 
+	 */
 	doCommand(cmd: Command) {
 		let task = <TaskItem>cmd.Data;
 		
