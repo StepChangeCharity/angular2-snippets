@@ -2,7 +2,7 @@
 
 import { Component, View, EventEmitter, Input, Output, NgClass, NgIf, FORM_DIRECTIVES } from "angular2/angular2";
 import { TaskBaseComponent } from "./task-base-component";
-import { Command, CommandTypes, EditMode } from "../models/models";
+import { Command, CommandType } from "../models/command";
 import { TaskItem } from "../models/task-item";
 
 @Component({
@@ -45,11 +45,11 @@ export class TaskViewComponent extends TaskBaseComponent {
 	toggleDone() {
 		this.task.isDone = !this.task.isDone;
 		
-		this.emitCommand(CommandTypes.TASK_COMPLETE_TOGGLE);
+		this.emitCommand(CommandType.TaskCompleteToggle);
 	}
 
 	editTask() {
-		this.emitCommand(CommandTypes.TASK_EDIT);
+		this.emitCommand(CommandType.TaskEdit);
 	}
 	
 	canEdit() {

@@ -2,12 +2,12 @@
 
 import { Component, View, Injector, Observable, EventEmitter } from "angular2/angular2";
 import { TaskListComponent } from "./task-list-component";
-import { CommandTypes, Command } from "./models/models";
+import { Command, CommandType } from "./models/command";
 import { TaskItem } from "./models/task-item";
 import { MemoryStore } from "./services/store/store";
 import { ToasterComponent } from "./components/toaster-component";
 import { CommsService } from "./services/comms-service"; 
-import { ToasterTypes, Toaster } from "./models/models";
+import { ToasterType, Toaster } from "./models/toaster";
 
 @Component({
 	selector: "todo-app"
@@ -90,16 +90,16 @@ export class ToDoApp {
 		let t: Toaster = null;
 		
 		switch (cmd.Type) {
-			case CommandTypes.TASK_GETALL_START:
-				t = new Toaster(ToasterTypes.TOAST_WARNING, "Loading data .. this may take a while ...");
+			case CommandType.TaskGetAllStart:
+				t = new Toaster(ToasterType.Warning, "Loading data .. this may take a while ...");
 				this.commsService.toasterPipeline.next(t);
 			break;
-			case CommandTypes.TASK_GETALL_COMPLETE:
-				t = new Toaster(ToasterTypes.TOAST_SUCCESS, "Data loaded ...");
+			case CommandType.TaskGetAllComplete:
+				t = new Toaster(ToasterType.Success, "Data loaded ...");
 				this.commsService.toasterPipeline.next(t);
 			break;
-			case CommandTypes.TASK_GETALL_ERROR:
-				t = new Toaster(ToasterTypes.TOAST_ERROR, <string>cmd.Data);
+			case CommandType.TaskGetAllError:
+				t = new Toaster(ToasterType.Error, <string>cmd.Data);
 				this.commsService.toasterPipeline.next(t);
 			break;
 		}
@@ -114,10 +114,10 @@ export class ToDoApp {
 		let task = <TaskItem>cmd.Data;
 		
 		switch (cmd.Type) {
-			case CommandTypes.TASK_EDIT:
+			case CommandType.TaskEdit:
 				// nothing to do
 			break;
-			case CommandTypes.TASK_SAVE:
+			case CommandType.TaskSave:
 				this.store.saveTask(task);
 			break;
 		}

@@ -3,8 +3,9 @@
 import { Component, View, EventEmitter, Input, Output, NgClass, NgIf, FORM_DIRECTIVES } from "angular2/angular2";
 import { TaskViewComponent } from "./task-view-component";
 import { TaskEditComponent } from "./task-edit-component";
-import { Command, CommandTypes, EditMode } from "../models/models";
+import { Command, CommandType } from "../models/command";
 import { TaskItem } from "../models/task-item";
+
 
 @Component({
 	selector: "task"	
@@ -20,48 +21,49 @@ import { TaskItem } from "../models/task-item";
 	directives: [NgIf, TaskViewComponent, TaskEditComponent]
 })
 
+
 export class TaskComponent {
 	@Input() task: TaskItem;
 	@Output() commander: EventEmitter = null;
 	
-	currMode: string = EditMode.READ_ONLY;
+	currMode: EditMode = EditMode.ReadOnly;
 
 	constructor() {
 		this.commander = new EventEmitter();
 	}
 	
 	isViewRO() {
-		return (this.currMode === EditMode.READ_ONLY);
+		return (this.currMode === EditMode.ReadOnly);
 	}
 	
 	isViewRW() {
-		return (this.currMode === EditMode.READ_WRITE);
+		return (this.currMode === EditMode.ReadWrite);
 	}
 		
 	startEditing() {
-		this.currMode = EditMode.READ_WRITE;
+		this.currMode = EditMode.ReadWrite;
 	}
 	
 	finishEditing() {
-		this.currMode = EditMode.READ_ONLY;
+		this.currMode = EditMode.ReadOnly;
 	}
 	
 		
 	
 	doCommand(cmd) {
 		let bubbleUp: Boolean = false;		
-		
+				
 		switch (cmd.Type) {
-			case CommandTypes.TASK_EDIT:
-				this.currMode = EditMode.READ_WRITE;
+			case CommandType.TaskEdit:
+				this.currMode = EditMode.ReadWrite;
 			break;
 			
-			case CommandTypes.TASK_SAVE:
-				this.currMode = EditMode.READ_ONLY;
+			case CommandType.TaskSave:
+				this.currMode = EditMode.ReadOnly;
 				bubbleUp = true;
 			break;
 			
-			case CommandTypes.TASK_COMPLETE_TOGGLE:
+			case CommandType.TaskCompleteToggle:
 				bubbleUp = true;
 			break;
 			
@@ -77,3 +79,9 @@ export class TaskComponent {
 	
 }
 
+
+enum EditMode {
+	Empty,
+	ReadOnly,
+	ReadWrite
+}

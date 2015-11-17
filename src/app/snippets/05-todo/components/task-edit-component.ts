@@ -2,7 +2,7 @@
 
 import { Component, View, EventEmitter, Input, Output, NgClass, NgIf, FORM_DIRECTIVES } from "angular2/angular2";
 import { TaskBaseComponent } from "./task-base-component";
-import { Command, CommandTypes, EditMode } from "../models/models";
+import { Command, CommandType } from "../models/command";
 import { TaskItem } from "../models/task-item";
 
 
@@ -42,7 +42,7 @@ export class TaskEditComponent extends TaskBaseComponent {
 	}
 
 	saveTask() {
-		super.emitCommand(CommandTypes.TASK_SAVE);
+		super.emitCommand(CommandType.TaskSave);
 	}
 	
 }

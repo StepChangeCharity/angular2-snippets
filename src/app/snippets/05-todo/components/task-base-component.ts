@@ -1,7 +1,7 @@
 /// <reference path="../../../../references.ts" />
 
 import { Component, View, EventEmitter, Input, Output, NgClass, NgIf, FORM_DIRECTIVES } from "angular2/angular2";
-import {  Command, CommandTypes, EditMode } from "../models/models";
+import { Command, CommandType } from "../models/command";
 import { TaskItem } from "../models/task-item";
 
 export class TaskBaseComponent {
@@ -21,7 +21,7 @@ export class TaskBaseComponent {
 	/// Sends a command to the parent/owning component about
 	/// "something" that happened (e.g. task was saved).
 	/// </summary>
-	emitCommand(cmdType: string) {
+	emitCommand(cmdType: CommandType) {
 		var c: Command = new Command(cmdType, this.task);
 		
 		this.commander.next(c);

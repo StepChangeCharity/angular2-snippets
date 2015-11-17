@@ -1,6 +1,7 @@
 import { Injector, Injectable, Inject } from 'angular2/angular2';
 import { HTTP_BINDINGS, Http, RequestOptions, Response, Headers } from 'angular2/http';
-import { CommandTypes, Command, Toaster, ToasterTypes } from "../../models/models";
+import { Command, CommandType } from "../../models/command";
+import { Toaster, ToasterType } from "../../models/toaster";
 import { TaskItem } from "../../models/task-item";
 import { CommsService } from "../comms-service";
 
@@ -148,7 +149,7 @@ export class ApiStorageStore extends BaseStore implements IStore {
 	
 	processCommand(c: Command) {
 		switch (c.Type) {
-			case CommandTypes.TASK_GETALL_COMPLETE:
+			case CommandType.TaskCompleteToggle:
 				this.data = <Array<TaskItem>> c.Data;
 			break;
 		}
@@ -183,7 +184,7 @@ export class ApiStorageStore extends BaseStore implements IStore {
 					if (!TaskItem.listEquals(self.data, newData)) {
 						// Data from underlying source changed, just tell the user to update if they want
 						let t: Toaster = new Toaster(
-							ToasterTypes.TOAST_WARNING, 
+							ToasterType.Warning, 
 							`Source data has changed, use "Load List" to update your version.`
 						);
 						self._comms.toasterPipeline.next(t);
@@ -202,7 +203,7 @@ export class ApiStorageStore extends BaseStore implements IStore {
 		// We're re-populating, so clear out what we already have
 		this.data = new Array<TaskItem>();
 		
-		cmd = new Command(CommandTypes.TASK_GETALL_START, null);
+		cmd = new Command(CommandType.TaskGetAllStart, null);
 		this._comms.apiPipeline.next(cmd);
 
 		this._http
@@ -214,14 +215,14 @@ export class ApiStorageStore extends BaseStore implements IStore {
 					
 					this.data = TaskItem.taskItemsMapper(result);
 					
-					let c: Command = new Command(CommandTypes.TASK_GETALL_COMPLETE, this.data);
+					let c: Command = new Command(CommandType.TaskGetAllComplete, this.data);
 					
 					this._comms.apiPipeline.next(c);
 
 				} else {
 					// oh dear
 					let error = JSON.parse(res.text());
-					let c: Command = new Command(CommandTypes.TASK_GETALL_ERROR, error.error);
+					let c: Command = new Command(CommandType.TaskGetAllError, error.error);
 					this._comms.apiPipeline.next(c);					
 				}
 			})
@@ -242,7 +243,7 @@ export class ApiStorageStore extends BaseStore implements IStore {
 		this._http
 			.post(ApiStorageStore.API_ENDPOINT, json, options)
 			.subscribe( (res: Response) => {
-				let t = new Toaster(ToasterTypes.TOAST_SUCCESS, "Task saved - note the SheetSu api creates a new task everytime :-(");
+				let t = new Toaster(ToasterType.Success, "Task saved - note the SheetSu api creates a new task everytime :-(");
 				this._comms.toasterPipeline.next(t);
 			})
 		;	

@@ -1,7 +1,16 @@
 /// <reference path="../../../../references.ts" />
 import { Response } from 'angular2/http';
 
+/** @class
+	* @name TaskItem
+	* @desc Encapsulates a "task" on the ToDo list
+	*/
 export class TaskItem {
+	
+/** @member
+	* @name _currId
+	* @desc Tracks the next taskId (mimics identity columns)
+	*/
 	static _currId: number = 0;
 	
 	taskId: number = 1;
@@ -16,6 +25,10 @@ export class TaskItem {
 		this.taskId = TaskItem._currId++;
 	}
 	
+	
+	/**
+	* @desc Maps an object (prob derived via JSON) to a typed TaskItem object
+	*/
 	static taskItemMapper(item: Object): TaskItem {
 		// TODO: This might be improved by using a JSON revivier? 
 
@@ -30,6 +43,10 @@ export class TaskItem {
 		return newTask;
 	}
 	
+
+	/**
+	* @desc Maps an array of objects (prob derived via JSON) to a typed array of TaskItem objects
+	*/
 	static taskItemsMapper(items: Array<Object>): Array<TaskItem> {
 		let newTasks: Array<TaskItem> = new Array<TaskItem>();
 		
@@ -41,7 +58,11 @@ export class TaskItem {
 		
 		return newTasks;
 	}
-	
+
+
+	/**
+	* @desc Convenience method to find a task in an array by it's "Id".
+	*/
 	static findById(tasks: Array<TaskItem>, id: number) {
 		let foundTask = tasks.find( (t) => {
 			return t.taskId === id;
@@ -50,6 +71,11 @@ export class TaskItem {
 		return foundTask;
 	}
 	
+	
+	/**
+	* @desc Compares two tasks to see if they the same
+	* (note this is the relevant data, not the two objects)
+	*/
 	static equals(task1: TaskItem, task2: TaskItem): boolean {
 		// Not bothered about "createdOn" and "modifiedOn"
 		if (task1.isDone !== task2.isDone)
@@ -63,6 +89,10 @@ export class TaskItem {
 		return true;
 	}
 	
+	
+	/**
+	* @desc Compares two lists of TaskItems to see if the data is the same
+	*/
 	static listEquals(list1: Array<TaskItem>, list2: Array<TaskItem>): boolean {
 		let isEqual: boolean = true;
 		
