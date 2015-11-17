@@ -53,9 +53,7 @@ import { ToasterTypes, Toaster } from "./models";
 			
 			<task-list [tasks]="store.data" (commander)="doCommand($event)"></task-list>
 			
-			<button (click)="onSave()">Save</button>
-			<button (click)="onClear()">Clear</button>
-			<button (click)="onDefaults()">Default List</button>
+			<button (click)="onLoadList()">Load List</button>
 		</div>
 	`,
 	directives: [TaskListComponent, ToasterComponent]
@@ -97,18 +95,10 @@ export class ToDoApp {
 
 	}
 	
-	onSave(): void {
-		this.store.saveList();
+	onLoadList(): void {
+		this.store.loadList();
 	}
 	
-	onClear(): void {
-		this.store.clearList();
-	}
-	
-	onDefaults(): void {
-		this.store.makeDefaultList();
-	}
-
 	doCommand(cmd: Command) {
 		let task = <TaskItem>cmd.Data;
 		

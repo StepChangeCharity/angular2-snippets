@@ -8,18 +8,6 @@ import { CommsService } from "../comms-service";
  * Specifies how a storage mechanism should be implemented
  */
 export interface IStore {
-	/** @function 
-	 * @name clearList
-	 * @desc Clears the list back to an empty list
-	*/
-	clearList(): void;
-	
-	/** @function 
-	 * @name saveList
-	 * @desc Persists the list to whatever persistence mechanism is being implemented.
-	*/
-	saveList(): void;
-	
 	/** @function
 	 * @name saveTask
 	 * @desc Saves a single task to the persistence store
@@ -32,11 +20,6 @@ export interface IStore {
 	*/
 	loadList(): Array<TaskItem>;
 	
-	/** @function 
-	 * @name makeDefaultList
-	 * @desc Clears the current list and adds some default noddy data in it's place.
-	*/
-	makeDefaultList(): void;
 }
 
 
@@ -50,7 +33,6 @@ class BaseStore {
 	protected _data: Array<TaskItem> = null;
 	
 	constructor() {
-		this.clearList();
 	}
 	
 	public get data(): Array<TaskItem> {
@@ -59,10 +41,6 @@ class BaseStore {
 	
 	public set data(value: Array<TaskItem>) {
 		this._data = value;
-	}
-	
-	clearList(): void {
-		this._data = new Array<TaskItem>();
 	}
 	
 	findById(tsk: TaskItem): TaskItem {
@@ -79,16 +57,6 @@ class BaseStore {
 		
 	}
 		
-	makeDefaultList(): void {
-		let defaultList: Array<TaskItem> = null;
-		
-		this._data = [
-			new TaskItem("Do big shop"),
-			new TaskItem("Make tea", true),
-			new TaskItem("Eat mice with sugar"),
-		];		
-	}	
-	
 }
 
 
@@ -104,14 +72,7 @@ export class MemoryStore extends BaseStore implements IStore {
 	}
 
 	loadList(): Array<TaskItem> {
-		// default store has no persistence, just use the default list
-		super.makeDefaultList();
-		
 		return this.data;
-	}
-	
-	saveList(): void {
-		// no saving on in-memory version		
 	}
 	
 	saveTask(task: TaskItem): void {
@@ -141,26 +102,15 @@ export class LocalStorageStore extends BaseStore implements IStore {
 		if (json) {
 			this.data = JSON.parse(json);
 		} else	{
-			this.clearList();
+			this.data = new Array<TaskItem>();
 		}
 		
 		return this.data;
 	}
 
-	saveList(): void {
-		let json = JSON.stringify(this.data);
-
-		window.localStorage.setItem(LocalStorageStore.STORE_KEY, json);
-	}
-	
-	clearList(): void {
-		super.clearList();
-		
-		localStorage.removeItem(LocalStorageStore.STORE_KEY);
-	}
-	
 	saveTask(task: TaskItem): void {
-		throw new Error("NotYetImplemented.");		
+		let json = JSON.stringify(this.data);
+		window.localStorage.setItem( LocalStorageStore.STORE_KEY, json );
 	}
 
 }
@@ -196,8 +146,6 @@ export class ApiStorageStore extends BaseStore implements IStore {
 	processCommand(c: Command) {
 		switch (c.Type) {
 			case CommandTypes.TASK_GETALL_COMPLETE:
-				// Loaded list afresh from the db
-				this.clearList();
 				this.data = <Array<TaskItem>> c.Data;
 			break;
 		}
@@ -217,7 +165,7 @@ export class ApiStorageStore extends BaseStore implements IStore {
 		let options: RequestOptions = this.getRequestOptions();
 		
 		// We're re-populating, so clear out what we already have
-		this.clearList();
+		this.data = new Array<TaskItem>();
 		
 		cmd = new Command(CommandTypes.TASK_GETALL_START, null);
 		this._comms.apiPipeline.next(cmd);
@@ -243,26 +191,8 @@ export class ApiStorageStore extends BaseStore implements IStore {
 				}
 			})
 		;
-			
-						
-		
-		// let t = new Toaster(ToasterTypes.TOAST_SUCCESS, "onClear called!");
-		// this.commsService.pipeline.next(t);		
 		
 		return new Array<TaskItem>();
-	}
-	
-	saveList(): void {
-		
-	}
-	
-	clearList(): void {
-		// DELETE is not yet supported by the sheetsu api :-()
-		let c: Command = new Command(ToasterTypes.TOAST_WARNING, "Clear is not supported by the api :-()");
-		this._comms.toasterPipeline.next(c);
-		
-		// super.clearList();
-		
 	}
 	
 	saveTask(task: TaskItem): void {
@@ -277,7 +207,8 @@ export class ApiStorageStore extends BaseStore implements IStore {
 		this._http
 			.post(ApiStorageStore.API_ENDPOINT, json, options)
 			.subscribe( (res: Response) => {
-				console.log(res);
+				let t = new Toaster(ToasterTypes.TOAST_SUCCESS, "Task saved - note the SheetSu api creates a new task everytime :-(");
+				this._comms.toasterPipeline.next(t);
 			})
 		;	
 	}
