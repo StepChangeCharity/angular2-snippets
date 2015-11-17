@@ -32,16 +32,27 @@ import { ToasterTypes, Toaster } from "./models";
 			</ul>
 
 			<h3>Issues - Component Inheritance</h3>
-			<p>
-				When using <i>Component Inheritance</i> use the <strong>inputs: ["xyz"]</strong> form
-				for defining inputs &amp; outputs.
-			</p>
-			<p>
-				When using the <strong>@Input ...</strong> approach you end up with two distinct variables
-				- the one in your component, and one in the base (aka super) version.  This isn't what we want
-				- using the <strong>inputs: ["sadf"]</strong> method the input is created via DI, and Angular
-				in essence creates it in the super class (which is what we <i>do</i> want).
-			</p>
+			<ol>
+				<li>
+					When using <i>Component Inheritance</i> use the <strong>inputs: ["xyz"]</strong> form
+					for defining inputs &amp; outputs.
+				</li>
+				<li>
+					When using the <strong>@Input ...</strong> approach you end up with two distinct variables
+					- the one in your component, and one in the base (aka super) version.  This isn't what we want
+					- using the <strong>inputs: ["sadf"]</strong> method the input is created via DI, and Angular
+					in essence creates it in the super class (which is what we <i>do</i> want).
+				</li>
+				<li>
+					In the <strong>ApiStorageStore</strong> model the class is annotated with
+					<strong>@Injectable</strong>, but this isn't required elsewhere.  I <strong>think</strong>
+					this is because it's a normal class, rather than something intrinsic to Angular2
+					so you have to decorate it as Injectable.<br/>
+					In addition I couldn't get the <strong>Http</strong> to inject normally and resorted
+					to using <strong>Injector.resolveAndCreate</strong> - still can't work out why - if you 
+					find out, please let me know!
+				</li>
+			</ol>
 
 			<h3>Resources</h3>
 			<p>n/a</p>
