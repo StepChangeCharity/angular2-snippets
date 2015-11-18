@@ -58,8 +58,7 @@ export class ApiStorageStore extends BaseStore implements IStore {
 		return o;
 	}
 	
-	changeCheck(): void {
-		
+	changeCheck(): void {		
 		
 		setTimeout(function() {
 			// TODO: Hit api and check local version
@@ -88,6 +87,10 @@ export class ApiStorageStore extends BaseStore implements IStore {
 			
 			this.changeCheck();
 		}.bind(this), ApiStorageStore.CHANGE_CHECK_TIME);
+	}
+	
+	storageType(): string {
+		return "API Storage";
 	}
 
 	loadList(): Array<TaskItem> {

@@ -16,6 +16,12 @@ export interface IStore {
 	*/
 	loadList(): Array<TaskItem>;
 	
+	/** @function 
+	 * @name storageType
+	 * @desc Reports the type of storage engine being used.
+	*/
+	storageType(): string;
+	
 }
 
 

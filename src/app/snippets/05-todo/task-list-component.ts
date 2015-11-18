@@ -4,6 +4,7 @@ import { Component, View, Input, Output, EventEmitter, NgFor, NgIf } from "angul
 import { TaskItem } from "./models/task-item";
 import { TaskComponent } from "./components/_task-component";
 import { TaskBaseComponent } from "./components/task-base-component";
+import { LocalStorageStore } from "./services/store/localstorage-store";
 
 @Component({
 	selector: "task-list"	
@@ -24,7 +25,7 @@ import { TaskBaseComponent } from "./components/task-base-component";
 			}
 		</style>
 		
-		<h5>Your task list</h5>
+		<h5>Your task list (<span style='color:red'>{{getStorageEngine()}}</span>)</h5>
 		
 		<!-- header - separate component would be a little extreme! -->
 
@@ -49,10 +50,16 @@ import { TaskBaseComponent } from "./components/task-base-component";
 export class TaskListComponent {
 	@Input() tasks: Array<TaskItem>;
 	@Output() commander: EventEmitter = null;
+	_engineType: string = "";
 	
-	constructor() {
+	constructor(store: LocalStorageStore) {
 		this.commander = new EventEmitter();
+		this._engineType = store.storageType();
 		//console.table(this.tasks);
+	}
+	
+	getStorageEngine(): string {
+		return this._engineType;
 	}
 	
 	doCommand(cmd) {

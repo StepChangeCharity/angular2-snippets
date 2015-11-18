@@ -14,8 +14,12 @@ bootstrap(AppComponent, [
 		HTTP_PROVIDERS,
 		Http,
     bind(LocationStrategy).toClass(HashLocationStrategy), 
+		CommsService,
 		
-		bind(LocalStorageStore).toClass(ApiStorageStore), 
-		CommsService
+		// ToDo app Dependency Injection illustration
+		// For API implementation, use "bind(LocalStorageStore).toClass(ApiStorageStore)"
+		// For Local storage implementation, use "LocalStorageStore"
+		LocalStorageStore
+		 
 ]).catch(err => console.error(err));
 
