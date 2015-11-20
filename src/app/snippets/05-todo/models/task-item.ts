@@ -15,8 +15,6 @@ export class TaskItem {
 	
 	taskId: number = 1;
 	task: string = "";
-	createdOn: Date = new Date();
-	modifiedOn: Date = new Date();
 	isDone: boolean = false;
 	
 	constructor(taskDescription: string, completed: boolean = false) {
@@ -34,8 +32,6 @@ export class TaskItem {
 
 		let newTask: TaskItem = new TaskItem("", false);
 		
-		newTask.createdOn = <Date>item["createdOn"];
-		newTask.modifiedOn = <Date>item["modifiedOn"];
 		newTask.taskId = <number>item["taskId"];
 		newTask.task = <string>item["task"];
 		newTask.isDone = <boolean>(item["isDone"] === "TRUE");
@@ -77,7 +73,6 @@ export class TaskItem {
 	* (note this is the relevant data, not the two objects)
 	*/
 	static equals(task1: TaskItem, task2: TaskItem): boolean {
-		// Not bothered about "createdOn" and "modifiedOn"
 		if (task1.isDone !== task2.isDone)
 			return false;
 		if (task1.task !== task2.task)

@@ -24,8 +24,6 @@ export class BaseStore {
 
 		// taskId remains unchanged
 		tsk.isDone = task.isDone;
-		tsk.createdOn = task.createdOn;
-		tsk.modifiedOn = task.modifiedOn;
 		tsk.task = task.task;
 	}
 	
