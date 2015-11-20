@@ -1,6 +1,7 @@
 /// <reference path="../../../../../references.ts" />
 
 import { Injectable } from 'angular2/angular2';
+import { Observable } from 'angular2/core';
 import { IStore } from "./_istore"
 import { BaseStore } from "./_base-store"
 import { TaskItem } from "../../models/task-item";
@@ -24,6 +25,7 @@ export class LocalStorageStore extends BaseStore implements IStore {
 			this.processCommand(c);
 		});
 		console.log("ToDo app using LocalStorageStore");
+		this.monitorChanges();
 	}
 
 	processCommand(c: Command): void {
@@ -32,6 +34,14 @@ export class LocalStorageStore extends BaseStore implements IStore {
 				this.data = <Array<TaskItem>> c.Data;
 			break;
 		}
+	}
+	
+	monitorChanges(): void {
+		Observable.fromEvent(window, "storage")
+			.subscribe((storageEvent) => {
+				console.log(storageEvent);
+			})
+		;
 	}
 	
 	loadList(): Array<TaskItem> {
