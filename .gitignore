@@ -57,3 +57,8 @@ tmp/**
 ##Distribution Code
 dist/**
 
+## Generated js files
+src/*.js
+src/*.map
+
+

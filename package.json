@@ -2,13 +2,27 @@
   "name": "angular2-snippets",
   "version": "0.0.1",
   "license": "Apache-2.0",
-  "dependencies": {
-    "systemjs": "0.19.4",
-    "angular2": "2.0.0-alpha.45"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angular/ng-test-seed.git"
+  },
+  "scripts": {
+    "clean": "rimraf src/**/*.js src/**/*.js.map",
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "serve": "http-server -p 9090 -c-1",
+    "test": "karma start karma.conf.js"
   },
   "devDependencies": {
-    "angular-cli": "0.0.*",
-    "angular-cli-github-pages": "^0.2.0",
-    "ember-cli-inject-live-reload": "^1.3.0"
+    "angular2": "2.0.0-alpha.44",
+    "http-server": "^0.8.5",
+    "jasmine": "2.3.2",
+    "karma": "^0.12.23",
+    "karma-chrome-launcher": "^0.1.4",
+    "karma-cli": "^0.0.4",
+    "karma-jasmine": "^0.3.6",
+    "rimraf": "^2.4.3",
+    "systemjs": "^0.19.4",
+    "typescript": "1.6.2"
   }
 }
