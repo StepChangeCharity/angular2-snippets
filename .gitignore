@@ -58,7 +58,7 @@ tmp/**
 dist/**
 
 ## Generated js files
-src/*.js
-src/*.map
+src/**/*.js
+src/**/*.map
 
 
