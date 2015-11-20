@@ -20,7 +20,7 @@ import { TaskItem } from "../models/task-item";
 		</style>
 		
 		<ul class="task-list-line">
-			<li class="col0">{{task.taskId}}</li>
+			<li class="col0">{{task.Id}}</li>
 			<li class="col1">
 				<button (click)="editTask()" [disabled]="!canEdit()">edit</button>
 			</li>

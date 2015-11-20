@@ -131,7 +131,7 @@ export class ApiStorageStore extends BaseStore implements IStore {
 		let json = JSON.stringify(task);
 		
 		let options = this.getRequestOptions();
-		
+		debugger;
 		this._http
 			.post(ApiStorageStore.API_ENDPOINT, json, options)
 			.subscribe( (res: Response) => {

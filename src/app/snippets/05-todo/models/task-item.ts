@@ -9,18 +9,18 @@ export class TaskItem {
 	
 /** @member
 	* @name _currId
-	* @desc Tracks the next taskId (mimics identity columns)
+	* @desc Tracks the next task id (mimics identity columns)
 	*/
 	static _currId: number = 0;
 	
-	taskId: number = 1;
+	Id: number = 1;
 	task: string = "";
 	isDone: boolean = false;
 	
 	constructor(taskDescription: string, completed: boolean = false) {
 		this.task = taskDescription;
 		this.isDone = completed;
-		this.taskId = TaskItem._currId++;
+		this.Id = TaskItem._currId++;
 	}
 	
 	
@@ -32,7 +32,7 @@ export class TaskItem {
 
 		let newTask: TaskItem = new TaskItem("", false);
 		
-		newTask.taskId = <number>item["taskId"];
+		newTask.Id = <number>item["Id"];
 		newTask.task = <string>item["task"];
 		newTask.isDone = <boolean>(item["isDone"] === "TRUE");
 
@@ -61,7 +61,7 @@ export class TaskItem {
 	*/
 	static findById(tasks: Array<TaskItem>, id: number) {
 		let foundTask = tasks.find( (t) => {
-			return t.taskId === id;
+			return t.Id === id;
 		});
 		
 		return foundTask;
@@ -77,7 +77,7 @@ export class TaskItem {
 			return false;
 		if (task1.task !== task2.task)
 			return false;
-		if (task1.taskId !== task1.taskId)
+		if (task1.Id !== task1.Id)
 			return false;
 			
 		// all properties equal ..
@@ -95,7 +95,7 @@ export class TaskItem {
 			isEqual = false;
 		else {
 			list1.forEach((t1) => {
-				let t2 = TaskItem.findById(list2, t1.taskId);
+				let t2 = TaskItem.findById(list2, t1.Id);
 				
 				if (!TaskItem.equals(t1, t2)) 
 					isEqual = false;

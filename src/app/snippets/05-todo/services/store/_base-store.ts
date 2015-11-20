@@ -20,9 +20,9 @@ export class BaseStore {
 	}
 	
 	saveTask(task: TaskItem): void {
-		let tsk = TaskItem.findById(this.data, task.taskId);
+		let tsk = TaskItem.findById(this.data, task.Id);
 
-		// taskId remains unchanged
+		// Id remains unchanged
 		tsk.isDone = task.isDone;
 		tsk.task = task.task;
 	}

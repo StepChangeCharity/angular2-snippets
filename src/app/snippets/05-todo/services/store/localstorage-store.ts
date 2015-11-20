@@ -24,9 +24,11 @@ export class LocalStorageStore extends BaseStore implements IStore {
 		this.monitorChanges();
 	}
 
+
 	storageType(): string {
 		return "Local Storage";
 	}
+
 
 	monitorChanges(): void {
 		Observable.fromEvent(window, "storage")
@@ -36,9 +38,6 @@ export class LocalStorageStore extends BaseStore implements IStore {
 		;
 	}
 	
-	getStoreKey(forTaskId: number) {
-		return 
-	}
 	
 	loadList(): Array<TaskItem> {
 		let storedData: Array<TaskItem> = new Array<TaskItem>();
@@ -56,6 +55,7 @@ export class LocalStorageStore extends BaseStore implements IStore {
 		return this.data;
 	}
 	
+	
 	makeList(): void {
 		super.makeList();
 		
@@ -70,7 +70,7 @@ export class LocalStorageStore extends BaseStore implements IStore {
 		super.saveTask(task);
 		
 		let json = JSON.stringify(task);
-		window.localStorage.setItem( task.taskId.toString(), json );
+		window.localStorage.setItem( task.Id.toString(), json );
 	}
 
 }
