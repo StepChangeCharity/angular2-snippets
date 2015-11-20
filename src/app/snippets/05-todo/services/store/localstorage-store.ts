@@ -46,6 +46,11 @@ export class LocalStorageStore extends BaseStore implements IStore {
 		return this.data;
 	}
 
+	makeList(): void {
+		super.makeList();
+	}
+
+
 	storageType(): string {
 		return "Local Storage";
 	}

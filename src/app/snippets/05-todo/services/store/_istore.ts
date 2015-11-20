@@ -17,6 +17,12 @@ export interface IStore {
 	loadList(): Array<TaskItem>;
 	
 	/** @function 
+	 * @name makeList
+	 * @desc Makes a default list to work with
+	*/
+	makeList(): void;
+	
+	/** @function 
 	 * @name storageType
 	 * @desc Reports the type of storage engine being used.
 	*/

@@ -10,6 +10,8 @@
 		"**/typings": true,
 		"**/tmp": true,
 		"**/dist": true,
+		"**/*.js": true,
+		"**/*.map": true,
 		".gitattributes": true,
 		"tsconfig.json": true,
 		"tsd.json": true

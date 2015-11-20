@@ -65,6 +65,7 @@ import { ToasterType, Toaster } from "./models/toaster";
 			<task-list [tasks]="store.data" (commander)="doCommand($event)"></task-list>
 			
 			<button (click)="onLoadList()">Load List</button>
+			<button (click)="onMakeList()">Make a list</button>
 		</div>
 	`,
 	directives: [TaskListComponent, ToasterComponent]
@@ -115,6 +116,10 @@ export class ToDoApp {
 	
 	onLoadList(): void {
 		this.store.loadList();
+	}
+	
+	onMakeList(): void {
+		this.store.makeList();
 	}
 	
 	

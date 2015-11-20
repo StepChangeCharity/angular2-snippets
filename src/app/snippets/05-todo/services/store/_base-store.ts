@@ -28,6 +28,14 @@ export class BaseStore {
 		tsk.modifiedOn = task.modifiedOn;
 		tsk.task = task.task;
 	}
+	
+	makeList(): void {
+		this._data = [
+			new TaskItem("Do big shop!"),
+			new TaskItem("Make tea, milkly, no sugar please!"),
+			new TaskItem("Cats eat mice for power")			
+		];
+	}
 		
 }
 

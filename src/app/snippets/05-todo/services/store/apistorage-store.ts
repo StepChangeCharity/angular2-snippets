@@ -128,6 +128,10 @@ export class ApiStorageStore extends BaseStore implements IStore {
 		return new Array<TaskItem>();
 	}
 	
+	makeList(): void {
+		super.makeList();
+	}
+	
 	saveTask(task: TaskItem): void {
 		// update the in-memory version
 		super.saveTask(task);
