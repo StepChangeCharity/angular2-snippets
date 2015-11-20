@@ -28,6 +28,12 @@ export interface IStore {
 	*/
 	storageType(): string;
 	
+	/** @function 
+	 * @name storageLocation
+	 * @desc Where the data is stored (if applicable)
+	*/
+	storageLocation(): string;
+	
 }
 
 

@@ -14,7 +14,10 @@ import { CommsService } from "../comms-service";
  */
 @Injectable()
 export class ApiStorageStore extends BaseStore implements IStore {
+	/// API hook
 	static API_ENDPOINT: string = "https://sheetsu.com/apis/d4299c26";
+	/// Where the data is stored
+	static SHEETS_ENDPOINT: string = "https://docs.google.com/spreadsheets/d/13s-gpNVUL457g6FyA4TP3BgcHrQV6fI9BvoD3M-o-bY/edit#gid=0";
 	static CHANGE_CHECK_TIME: number = 60000;
 	
 	_http: Http = null;
@@ -33,7 +36,11 @@ export class ApiStorageStore extends BaseStore implements IStore {
 	}
 	
 	storageType(): string {
-		return "API Storage";
+		return `API Storage`;
+	}
+	
+	storageLocation(): string {
+		return ApiStorageStore.SHEETS_ENDPOINT;
 	}
 
 	resolveDependencies(): void {

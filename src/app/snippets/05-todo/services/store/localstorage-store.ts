@@ -29,6 +29,9 @@ export class LocalStorageStore extends BaseStore implements IStore {
 		return "Local Storage";
 	}
 
+	storageLocation(): string {
+		return "";
+	}
 
 	monitorChanges(): void {
 		Observable.fromEvent(window, "storage")

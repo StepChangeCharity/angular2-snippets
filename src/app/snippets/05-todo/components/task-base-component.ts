@@ -31,6 +31,14 @@ export class TaskBaseComponent {
 	/// Common styles used by inherited components
 	/// </summary>
 	static baseStyles: string = `
+		.task-list-line {
+			list-style: none;				
+			padding: 0;
+		}
+		.task-list-line li {
+			float: left;
+		}
+
 		.task-list-line button {
 			cursor: pointer;
 		}
@@ -38,12 +46,6 @@ export class TaskBaseComponent {
 			width: 100%;
 		}
 
-		.task-list-line {
-			list-style: none;				
-		}
-		.task-list-line li {
-			float: left;
-		}
 		.task-list-line li.completed .task-label {
 			text-decoration: line-through;
 		}

@@ -15,18 +15,28 @@ import { LocalStorageStore } from "./services/store/localstorage-store";
 	template: `
 		<style>
 			.task-list {
+				padding: 0;
+			}
+			.task-list li {
 				list-style: none;
 			}
 		
 			<!-- for the header column widths --> 
 			${TaskBaseComponent.baseStyles}
 
+			.task-list-line {
+				padding:0;
+			}
 			.task-list-line-header {
 				font-weight: bold;
 			}
 		</style>
 		
-		<h5>Your task list (<span style='color:red'>{{getStorageEngine()}}</span>)</h5>
+		<h5>
+			Your task list 
+			(<span style='color:red' [inner-html]>{{getStorageEngine()}}</span>)
+			<span *ng-if="_dataLocation.length > 0">(<a href="{{_dataLocation}}">remote Data Store</a>)</span>	
+		</h5>
 		
 		<!-- header - separate component would be a little extreme! -->
 
@@ -52,10 +62,12 @@ export class TaskListComponent {
 	@Input() tasks: Array<TaskItem>;
 	@Output() commander: EventEmitter<Command> = null;
 	_engineType: string = "";
+	_dataLocation: string = "";
 	
 	constructor(store: LocalStorageStore) {
 		this.commander = new EventEmitter<Command>();
 		this._engineType = store.storageType();
+		this._dataLocation = store.storageLocation();
 		//console.table(this.tasks);
 	}
 	

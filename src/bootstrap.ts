@@ -19,8 +19,7 @@ bootstrap(AppComponent, [
 		// ToDo app Dependency Injection illustration
 		// For API implementation, use "bind(LocalStorageStore).toClass(ApiStorageStore)"
 		// For Local storage implementation, use "LocalStorageStore"
-		//LocalStorageStore
-		bind(LocalStorageStore).toClass(ApiStorageStore)
+		LocalStorageStore
 		 
 ]).catch(err => console.error(err));
 
