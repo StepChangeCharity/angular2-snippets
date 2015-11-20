@@ -62,7 +62,7 @@ import { ToasterType, Toaster } from "./models/toaster";
 			<h3>Snippet</h3>
 			<hr/>
 			
-			<task-list [tasks]="store.data" (commander)="doCommand($event)"></task-list>
+			<task-list [tasks]="store.data" (commander)="processEvents($event)"></task-list>
 			
 			<button (click)="onLoadList()">Load List</button>
 			<button (click)="onMakeList()">Make a list</button>
@@ -91,12 +91,12 @@ export class ToDoApp {
 	
 	
 	/**
-	 * @desc Receives any messages from other components in the system and acts on them
+	 * @desc Receives any commands from other components in the system and acts on them
 	 *       (or forwards for attention elsewhere). 
 	 */
 	processCommand(cmd: Command) {
 		let t: Toaster = null;
-		
+
 		switch (cmd.Type) {
 			case CommandType.TaskGetAllStart:
 				t = new Toaster(ToasterType.Warning, "Loading data .. this may take a while ...");
@@ -126,14 +126,17 @@ export class ToDoApp {
 	/**
 	 * @desc Processes the output of a command from a task component (e.g. save the data) 
 	 */
-	doCommand(cmd: Command) {
+	processEvents(cmd: Command) {
 		let task = <TaskItem>cmd.Data;
-		
+
 		switch (cmd.Type) {
 			case CommandType.TaskEdit:
 				// nothing to do
 			break;
 			case CommandType.TaskSave:
+				this.store.saveTask(task);
+			break;
+			case CommandType.TaskCompleteToggle:
 				this.store.saveTask(task);
 			break;
 		}

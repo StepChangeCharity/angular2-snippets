@@ -26,27 +26,22 @@ export class ApiStorageStore extends BaseStore implements IStore {
 
 		this._comms = cs;		
 		this.resolveDependencies();
-		this._comms.apiPipeline.subscribe((c) => this.processCommand(c));
 		
 		// Periodically check the api to see if more data has been added ...
 		// Poor man's signal r :-(
 		this.changeCheck();
 	}
 	
+	storageType(): string {
+		return "API Storage";
+	}
+
 	resolveDependencies(): void {
 		let injector = Injector.resolveAndCreate([
 			HTTP_BINDINGS, 
 			CommsService
 		]);
 		this._http = injector.get(Http);
-	}
-	
-	processCommand(c: Command) {
-		switch (c.Type) {
-			case CommandType.TaskCompleteToggle:
-				this.data = <Array<TaskItem>> c.Data;
-			break;
-		}
 	}
 	
 	getRequestOptions(): RequestOptions {
@@ -89,10 +84,6 @@ export class ApiStorageStore extends BaseStore implements IStore {
 		}.bind(this), ApiStorageStore.CHANGE_CHECK_TIME);
 	}
 	
-	storageType(): string {
-		return "API Storage";
-	}
-
 	loadList(): Array<TaskItem> {
 		let cmd: Command = null;
 		let options: RequestOptions = this.getRequestOptions();

@@ -15,27 +15,19 @@ import { CommsService } from "../comms-service";
 @Injectable()
 export class LocalStorageStore extends BaseStore implements IStore {
 
-	static STORE_KEY: string = "todo::list";
 	_comms: CommsService = null;
 
 	constructor(cs: CommsService) {
 		super();
 		this._comms = cs;
-		this._comms.apiPipeline.subscribe( (c) => {
-			this.processCommand(c);
-		});
 		console.log("ToDo app using LocalStorageStore");
 		this.monitorChanges();
 	}
 
-	processCommand(c: Command): void {
-		switch (c.Type) {
-			case CommandType.TaskCompleteToggle:
-				this.data = <Array<TaskItem>> c.Data;
-			break;
-		}
+	storageType(): string {
+		return "Local Storage";
 	}
-	
+
 	monitorChanges(): void {
 		Observable.fromEvent(window, "storage")
 			.subscribe((storageEvent) => {
@@ -44,31 +36,41 @@ export class LocalStorageStore extends BaseStore implements IStore {
 		;
 	}
 	
+	getStoreKey(forTaskId: number) {
+		return 
+	}
+	
 	loadList(): Array<TaskItem> {
-		let json = window.localStorage.getItem( LocalStorageStore.STORE_KEY );
-		 
-		if (json) {
-			this.data = JSON.parse(json);
-		} else	{
-			this.data = new Array<TaskItem>();
+		let storedData: Array<TaskItem> = new Array<TaskItem>();
+		
+		for (var i=0; i < window.localStorage.length; i++) {
+			let key = window.localStorage.key(i);
+			let json = window.localStorage.getItem(key);
+			let currTask = JSON.parse(json);
+				
+			storedData.push(currTask);
 		}
+		
+		this.data = storedData;
 		
 		return this.data;
 	}
-
+	
 	makeList(): void {
 		super.makeList();
-	}
-
-
-	storageType(): string {
-		return "Local Storage";
+		
+		// and save all
+		this.data.forEach((task: TaskItem) => {
+			this.saveTask(task);
+		});
 	}
 
 
 	saveTask(task: TaskItem): void {
-		let json = JSON.stringify(this.data);
-		window.localStorage.setItem( LocalStorageStore.STORE_KEY, json );
+		super.saveTask(task);
+		
+		let json = JSON.stringify(task);
+		window.localStorage.setItem( task.taskId.toString(), json );
 	}
 
 }

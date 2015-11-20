@@ -69,7 +69,7 @@ export class TaskComponent {
 			
 		}
 		
-		console.log("task::event", `bubbleUp=${bubbleUp}`, cmd.Type, cmd.Data);
+		console.log("task::event", `bubbleUp=${bubbleUp}`, CommandType[cmd.Type], cmd.Data);
 		
 		if (bubbleUp) {
 			// tell parent about this event
