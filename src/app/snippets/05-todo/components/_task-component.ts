@@ -24,12 +24,12 @@ import { TaskItem } from "../models/task-item";
 
 export class TaskComponent {
 	@Input() task: TaskItem;
-	@Output() commander: EventEmitter = null;
+	@Output() commander: EventEmitter<Command> = null;
 	
 	currMode: EditMode = EditMode.ReadOnly;
 
 	constructor() {
-		this.commander = new EventEmitter();
+		this.commander = new EventEmitter<Command>();
 	}
 	
 	isViewRO() {
@@ -50,7 +50,7 @@ export class TaskComponent {
 	
 		
 	
-	doCommand(cmd) {
+	doCommand(cmd: Command) {
 		let bubbleUp: Boolean = false;		
 				
 		switch (cmd.Type) {

@@ -21,10 +21,10 @@ import { Component, View, FORM_DIRECTIVES, NgIf, Injector, EventEmitter, Input, 
 
 export class ChildControlComponent {
 	amount: number = 0;
-	update: EventEmitter = null;
+	update: EventEmitter<number> = null;
 	
 	constructor() {
-		this.update = new EventEmitter();
+		this.update = new EventEmitter<number>();
 	}
 	
 	increment() {

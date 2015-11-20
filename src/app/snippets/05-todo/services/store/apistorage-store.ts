@@ -26,7 +26,7 @@ export class ApiStorageStore extends BaseStore implements IStore {
 
 		this._comms = cs;		
 		this.resolveDependencies();
-		this._comms.apiPipeline.toRx().subscribe((c) => this.processCommand(c));
+		this._comms.apiPipeline.subscribe((c) => this.processCommand(c));
 		
 		// Periodically check the api to see if more data has been added ...
 		// Poor man's signal r :-(

@@ -11,10 +11,10 @@ export class TaskBaseComponent {
 
 	// "commander" is initialised in the constructor as EventEmitter is not 
 	// created by Angular DI
-	commander: EventEmitter;
+	commander: EventEmitter<Command> = null;
 	
 	constructor() {
-		this.commander = new EventEmitter();		
+		this.commander = new EventEmitter<Command>();		
 	}
 	
 	/// <summary>

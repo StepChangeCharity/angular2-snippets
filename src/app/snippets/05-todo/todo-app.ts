@@ -79,8 +79,8 @@ export class ToDoApp {
 		this.store = store;
 
 		// setup subscriptions to receive notifications from components in the app
-		this.commsService.apiPipeline.toRx().subscribe( (cmd) => this.processCommand(cmd) );
-		this.commsService.toasterPipeline.toRx().subscribe( (cmd) => this.processCommand(cmd) );
+		this.commsService.apiPipeline.subscribe( (cmd) => this.processCommand(cmd) );
+		this.commsService.toasterPipeline.subscribe( (cmd) => this.processCommand(cmd) );
 	}
 	
 	onInit() {

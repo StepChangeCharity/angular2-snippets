@@ -28,10 +28,10 @@ import { BottomComponent } from './bottom-component';
 
 export class MiddleComponent {
 	@Input() middleAge: number = 0;
-	@Output() propagator: EventEmitter = null;
+	@Output() propagator: EventEmitter<Object> = null;
 
 	constructor() {
-		this.propagator = new EventEmitter();		
+		this.propagator = new EventEmitter<Object>();		
 	}
 	
 	onMonthly(monthly) {

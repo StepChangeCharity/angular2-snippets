@@ -47,7 +47,7 @@ export class ToasterComponent {
 	constructor(comms: CommsService) {
 		this.commsService = comms;
 
-		this.commsService.toasterPipeline.toRx().subscribe( (data) => {
+		this.commsService.toasterPipeline.subscribe( (data) => {
 			// show the new toast
 			this.toast = <Toaster>data;
 			

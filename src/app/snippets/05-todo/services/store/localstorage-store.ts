@@ -20,7 +20,7 @@ export class LocalStorageStore extends BaseStore implements IStore {
 	constructor(cs: CommsService) {
 		super();
 		this._comms = cs;
-		this._comms.apiPipeline.toRx().subscribe( (c) => {
+		this._comms.apiPipeline.subscribe( (c) => {
 			this.processCommand(c);
 		});
 		console.log("ToDo app using LocalStorageStore");

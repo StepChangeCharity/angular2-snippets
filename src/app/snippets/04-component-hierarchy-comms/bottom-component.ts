@@ -23,12 +23,12 @@ import {
 
 export class BottomComponent {
 	@Input() bottomAge: number = 0;
-	@Output() monthlyOutput: EventEmitter = null;
-	update: EventEmitter = null;
+	@Output() monthlyOutput: EventEmitter<number> = null;
+	update: EventEmitter<number> = null;
 	
 	constructor() {
-		this.monthlyOutput = new EventEmitter();
-		this.update = new EventEmitter();
+		this.monthlyOutput = new EventEmitter<number>();
+		this.update = new EventEmitter<number>();
 	}
 	
 	onFire() {

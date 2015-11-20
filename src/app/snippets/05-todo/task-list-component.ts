@@ -2,6 +2,7 @@
 
 import { Component, View, Input, Output, EventEmitter, NgFor, NgIf } from "angular2/angular2";
 import { TaskItem } from "./models/task-item";
+import { Command, CommandType } from "./models/command"
 import { TaskComponent } from "./components/_task-component";
 import { TaskBaseComponent } from "./components/task-base-component";
 import { LocalStorageStore } from "./services/store/localstorage-store";
@@ -49,11 +50,11 @@ import { LocalStorageStore } from "./services/store/localstorage-store";
 
 export class TaskListComponent {
 	@Input() tasks: Array<TaskItem>;
-	@Output() commander: EventEmitter = null;
+	@Output() commander: EventEmitter<Command> = null;
 	_engineType: string = "";
 	
 	constructor(store: LocalStorageStore) {
-		this.commander = new EventEmitter();
+		this.commander = new EventEmitter<Command>();
 		this._engineType = store.storageType();
 		//console.table(this.tasks);
 	}
@@ -62,7 +63,7 @@ export class TaskListComponent {
 		return this._engineType;
 	}
 	
-	doCommand(cmd) {
+	doCommand(cmd: Command) {
 		// task-list doesn't care about this, so forward on
 		this.commander.next(cmd);
 	}
