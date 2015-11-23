@@ -5,6 +5,7 @@ import { Observable } from 'angular2/core';
 import { IStore } from "./_istore"
 import { BaseStore } from "./_base-store"
 import { TaskItem } from "../../models/task-item";
+import { Toaster, ToasterType } from "../../models/toaster";
 import { Command, CommandType } from "../../models/command";
 import { CommsService } from "../comms-service";
 
@@ -36,7 +37,16 @@ export class LocalStorageStore extends BaseStore implements IStore {
 	monitorChanges(): void {
 		Observable.fromEvent(window, "storage")
 			.subscribe((storageEvent) => {
-				console.log(storageEvent);
+				// TODO: Change this to a flatten or reduce type thing (better illustration)
+				// Perhaps took at the throttling stuff so we can show multiple edits in the same toast?
+				let json = storageEvent.newValue;
+				let changedTask: TaskItem = <TaskItem>JSON.parse(json);
+				
+				this.saveTask(changedTask);		
+				
+				// And notify client the data has changed		
+				let t = new Toaster(ToasterType.Success, `Task ${changedTask.Id} has been updated.`)
+				this._comms.toasterPipeline.next(t);
 			})
 		;
 	}
@@ -70,6 +80,7 @@ export class LocalStorageStore extends BaseStore implements IStore {
 
 
 	saveTask(task: TaskItem): void {
+		// update the UI
 		super.saveTask(task);
 		
 		let json = JSON.stringify(task);

@@ -57,18 +57,6 @@ export class TaskItem {
 
 
 	/**
-	* @desc Convenience method to find a task in an array by it's "Id".
-	*/
-	static findById(tasks: Array<TaskItem>, id: number) {
-		let foundTask = tasks.find( (t) => {
-			return t.Id === id;
-		});
-		
-		return foundTask;
-	}
-	
-	
-	/**
 	* @desc Compares two tasks to see if they the same
 	* (note this is the relevant data, not the two objects)
 	*/

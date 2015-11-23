@@ -20,11 +20,10 @@ export class BaseStore {
 	}
 	
 	saveTask(task: TaskItem): void {
-		let tsk = TaskItem.findById(this.data, task.Id);
-
-		// Id remains unchanged
-		tsk.isDone = task.isDone;
-		tsk.task = task.task;
+		// find where this "Id" is in the array
+		let ndx: number = this.findIndexOf(task);
+		// and update it with the new task
+		this.data[ndx] = task;
 	}
 	
 	makeList(): void {
@@ -34,6 +33,29 @@ export class BaseStore {
 			new TaskItem("Cats eat mice for power")			
 		];
 	}
+		
+	/**
+	* @desc Convenience method to find a task in an array by it's "Id".
+	*/
+	findById(id: number): TaskItem {
+		let foundTask = this.data.find( (t) => {
+			return t.Id === id;
+		});
+		
+		return foundTask;
+	}
+	
+	findIndexOf(thisTask: TaskItem): number {
+		let foundIndex: number = -1;
+		this.data.forEach((item: TaskItem, index: number) => {
+			if (thisTask.Id === item.Id)
+				foundIndex = index;
+		});
+		return foundIndex;
+	}
+	
+	
+
 		
 }
 
