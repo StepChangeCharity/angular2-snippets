@@ -36,7 +36,12 @@ export class LocalStorageStore extends BaseStore implements IStore {
 
 	monitorChanges(): void {
 		Observable.fromEvent(window, "storage")
-			.subscribe((storageEvent) => {
+			.subscribe((storageEvent: any) => {
+				if (this.isIE()) {
+					console.log("Internet Explorer notifications are disabled in this noddy app (coz IE is rubbush!)");
+					return;
+				}
+				
 				// TODO: Change this to a flatten or reduce type thing (better illustration)
 				// Perhaps took at the throttling stuff so we can show multiple edits in the same toast?
 				let json = storageEvent.newValue;
@@ -50,7 +55,14 @@ export class LocalStorageStore extends BaseStore implements IStore {
 			})
 		;
 	}
-	
+
+	isIE(): boolean {
+		let ua: string = navigator.userAgent;
+		if (ua.indexOf("Trident") > 0 || ua.indexOf("MSIE") > 0)
+			return true;
+			
+		return false;
+	}
 	
 	loadList(): Array<TaskItem> {
 		let storedData: Array<TaskItem> = new Array<TaskItem>();
