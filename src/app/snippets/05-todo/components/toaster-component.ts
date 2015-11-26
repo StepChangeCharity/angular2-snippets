@@ -1,6 +1,6 @@
 /// <reference path="../../../../references.ts" />
 
-import { Component, View, Injector } from "angular2/angular2";
+import { Component, View, Injector, NgIf } from "angular2/angular2";
 import { CommsService } from "../services/comms-service";
 import { Toaster, ToasterType } from "../models/toaster";
 
@@ -29,7 +29,7 @@ import { Toaster, ToasterType } from "../models/toaster";
 			}
 		</style>
 		
-		<div [hidden]="toast.message.length === 0" class="toaster-container {{getTypeCss()}}">
+		<div *ng-if="hideToast()" class="toaster-container {{getTypeCss()}}">
 			<p class="toaster-message">
 				{{toast.message}}
 			</p>
@@ -57,6 +57,10 @@ export class ToasterComponent {
 				
 			}.bind(this), ToasterComponent.TOASTER_TIMEOUT);
 		});
+	}
+
+	hideToast(): boolean {
+		return (this.toast.message.length !== 0);
 	}
 
 	getTypeCss(): string {
