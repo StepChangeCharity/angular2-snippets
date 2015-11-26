@@ -34,16 +34,16 @@ export class BaseStore {
 		];
 	}
 		
-	/**
-	* @desc Convenience method to find a task in an array by it's "Id".
-	*/
-	findById(id: number): TaskItem {
-		let foundTask = this.data.find( (t) => {
-			return t.Id === id;
-		});
-		
-		return foundTask;
-	}
+	// /**
+	// * @desc Convenience method to find a task in an array by it's "Id".
+	// */
+	// findById(id: number): TaskItem {
+	// 	let foundTask = this.data.find( (t) => {
+	// 		return t.Id === id;
+	// 	});
+	// 	
+	// 	return foundTask;
+	// }
 	
 	findIndexOf(thisTask: TaskItem): number {
 		let foundIndex: number = -1;

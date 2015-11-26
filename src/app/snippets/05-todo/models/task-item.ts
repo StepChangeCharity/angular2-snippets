@@ -83,7 +83,9 @@ export class TaskItem {
 			isEqual = false;
 		else {
 			list1.forEach((t1) => {
-				let t2 = TaskItem.findById(list2, t1.Id);
+				let t2 = list2.find( (t) => {
+					return t.Id === t1.Id;
+				});				
 				
 				if (!TaskItem.equals(t1, t2)) 
 					isEqual = false;
