@@ -16,6 +16,7 @@ import { RouterLink } from 'angular2/router';
 			<li><a [router-link]="['/ToDoApp']">ToDo application</a></li>
 			<li><a [router-link]="['/DynamicStyling']">Dynamic styling</a></li>
 			<li><a [router-link]="['/SimpleSearch']">Simple search pipe</a></li>
+			<li><a [router-link]="['/ReduxApp']">Redux App</a></li>
 			
 		</ol>
 	`,

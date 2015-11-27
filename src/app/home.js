@@ -29,7 +29,7 @@ System.register(['angular2/angular2', 'angular2/router'], function(exports_1) {
                         selector: "home"
                     }),
                     angular2_1.View({
-                        template: "\n\t\t<ol>\n\t\t\n\t\t\t<li><a [router-link]=\"['/InAndOut']\">Component inputs &amp; outputs</a></li>\n\t\t\t<li><a [router-link]=\"['/Forms']\">Forms</a></li>\n\t\t\t<li><a [router-link]=\"['/Pipes']\">Pipes</a></li>\n\t\t\t<li><a [router-link]=\"['/CompHierarchy']\">Component hierarchy</a></li>\n\t\t\t<li><a [router-link]=\"['/ToDoApp']\">ToDo application</a></li>\n\t\t\t<li><a [router-link]=\"['/DynamicStyling']\">Dynamic styling</a></li>\n\t\t\t<li><a [router-link]=\"['/SimpleSearch']\">Simple search pipe</a></li>\n\t\t\t\n\t\t</ol>\n\t",
+                        template: "\n\t\t<ol>\n\t\t\n\t\t\t<li><a [router-link]=\"['/InAndOut']\">Component inputs &amp; outputs</a></li>\n\t\t\t<li><a [router-link]=\"['/Forms']\">Forms</a></li>\n\t\t\t<li><a [router-link]=\"['/Pipes']\">Pipes</a></li>\n\t\t\t<li><a [router-link]=\"['/CompHierarchy']\">Component hierarchy</a></li>\n\t\t\t<li><a [router-link]=\"['/ToDoApp']\">ToDo application</a></li>\n\t\t\t<li><a [router-link]=\"['/DynamicStyling']\">Dynamic styling</a></li>\n\t\t\t<li><a [router-link]=\"['/SimpleSearch']\">Simple search pipe</a></li>\n\t\t\t<li><a [router-link]=\"['/ReduxApp']\">Redux App</a></li>\n\t\t\t\n\t\t</ol>\n\t",
                         directives: [router_1.RouterLink]
                     }), 
                     __metadata('design:paramtypes', [])

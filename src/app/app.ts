@@ -8,6 +8,7 @@ import { ComponentHierarchyCommsSnippet } from './snippets/04-component-hierarch
 import { ToDoApp } from './snippets/05-todo/todo-app';
 import { DynamicStylingSnippet } from './snippets/06-dynamic-styling/dynamic-styling';
 import { SimpleSearchPipe } from './snippets/07-simple-search-pipe/search-pipe';
+import { ReduxApp } from './snippets/08-redux/redux-app';
 
 @Component({
     selector: 'app'
@@ -30,7 +31,8 @@ import { SimpleSearchPipe } from './snippets/07-simple-search-pipe/search-pipe';
 	{ path: '/04-component-hierarchy',       as: "CompHierarchy",  component: ComponentHierarchyCommsSnippet },
 	{ path: '/05-todo-app',                  as: "ToDoApp",        component: ToDoApp },
 	{ path: '/06-dynamic-styling',           as: "DynamicStyling", component: DynamicStylingSnippet },
-	{ path: '/07-simple-search-pipe',        as: "SimpleSearch",   component: SimpleSearchPipe }
+	{ path: '/07-simple-search-pipe',        as: "SimpleSearch",   component: SimpleSearchPipe },
+	{ path: '/08-redux',                     as: "ReduxApp",       component: ReduxApp }
 ])
 
 export class AppComponent {

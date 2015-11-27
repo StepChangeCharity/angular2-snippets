@@ -1,4 +1,4 @@
-System.register(['angular2/angular2', 'angular2/router', './home', './snippets/01-input-and-output/inputs-and-outputs', './snippets/02-forms/forms-snippet', './snippets/03-pipes/pipes-snippet', './snippets/04-component-hierarchy-comms/component-hierarchy-comms', './snippets/05-todo/todo-app', './snippets/06-dynamic-styling/dynamic-styling', './snippets/07-simple-search-pipe/search-pipe'], function(exports_1) {
+System.register(['angular2/angular2', 'angular2/router', './home', './snippets/01-input-and-output/inputs-and-outputs', './snippets/02-forms/forms-snippet', './snippets/03-pipes/pipes-snippet', './snippets/04-component-hierarchy-comms/component-hierarchy-comms', './snippets/05-todo/todo-app', './snippets/06-dynamic-styling/dynamic-styling', './snippets/07-simple-search-pipe/search-pipe', './snippets/08-redux/redux-app'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
         switch (arguments.length) {
@@ -10,7 +10,7 @@ System.register(['angular2/angular2', 'angular2/router', './home', './snippets/0
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var angular2_1, router_1, home_1, inputs_and_outputs_1, forms_snippet_1, pipes_snippet_1, component_hierarchy_comms_1, todo_app_1, dynamic_styling_1, search_pipe_1;
+    var angular2_1, router_1, home_1, inputs_and_outputs_1, forms_snippet_1, pipes_snippet_1, component_hierarchy_comms_1, todo_app_1, dynamic_styling_1, search_pipe_1, redux_app_1;
     var AppComponent;
     return {
         setters:[
@@ -43,6 +43,9 @@ System.register(['angular2/angular2', 'angular2/router', './home', './snippets/0
             },
             function (search_pipe_1_1) {
                 search_pipe_1 = search_pipe_1_1;
+            },
+            function (redux_app_1_1) {
+                redux_app_1 = redux_app_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -65,7 +68,8 @@ System.register(['angular2/angular2', 'angular2/router', './home', './snippets/0
                         { path: '/04-component-hierarchy', as: "CompHierarchy", component: component_hierarchy_comms_1.ComponentHierarchyCommsSnippet },
                         { path: '/05-todo-app', as: "ToDoApp", component: todo_app_1.ToDoApp },
                         { path: '/06-dynamic-styling', as: "DynamicStyling", component: dynamic_styling_1.DynamicStylingSnippet },
-                        { path: '/07-simple-search-pipe', as: "SimpleSearch", component: search_pipe_1.SimpleSearchPipe }
+                        { path: '/07-simple-search-pipe', as: "SimpleSearch", component: search_pipe_1.SimpleSearchPipe },
+                        { path: '/08-redux', as: "ReduxApp", component: redux_app_1.ReduxApp }
                     ]), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
