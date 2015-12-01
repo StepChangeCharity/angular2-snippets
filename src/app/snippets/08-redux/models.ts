@@ -49,7 +49,7 @@ export class vwSession {
 		this.expenditure = new vwExpenditure();
 	}
 	
-	static createDummy(): void {
+	static createDummy(): vwSession {
 		let s = new vwSession();
 		
 		s.user.firstName = "Bob";

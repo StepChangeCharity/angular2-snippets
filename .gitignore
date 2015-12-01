@@ -53,6 +53,7 @@ typings/**
 
 ##Temp files
 tmp/**
+*.log
 
 ##Distribution Code
 dist/**
